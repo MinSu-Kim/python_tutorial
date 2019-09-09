@@ -20,10 +20,22 @@ words = ['cat', 'window', 'defenestrate']
 for w in words:
     print(w, len(w))
 
-print('\nfor 문-02')    
+print('\nfor 문-02')   
+print(words) 
 for w in words[:]:  # Loop over a slice copy of the entire list.
     if len(w) > 6:
         words.insert(0, w)
+print(words)
+
+# for w in words: 를 쓰면, 위의 예는 defenestrate를 반복해서 넣고 또 넣음으로써, 무한한 리스트를 만들려고 시도.
+i=0
+for w in words:  # Loop over a slice copy of the entire list.
+    if len(w) > 6:
+        words.insert(0, w)
+    if i==5:
+        break
+    i=i+1
+    
 print(words)
 
 
