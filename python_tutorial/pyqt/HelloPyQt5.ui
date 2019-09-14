@@ -6,19 +6,20 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>534</width>
-    <height>341</height>
+    <width>517</width>
+    <height>352</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>MainWindow</string>
   </property>
   <widget class="QWidget" name="centralwidget">
-   <layout class="QHBoxLayout" name="horizontalLayout">
+   <layout class="QVBoxLayout" name="verticalLayout">
     <item>
      <widget class="QLabel" name="label">
       <property name="font">
        <font>
+        <family>맑은 고딕</family>
         <pointsize>48</pointsize>
        </font>
       </property>
@@ -30,6 +31,13 @@
       </property>
      </widget>
     </item>
+    <item>
+     <widget class="QPushButton" name="pushButton">
+      <property name="text">
+       <string>PushButton</string>
+      </property>
+     </widget>
+    </item>
    </layout>
   </widget>
   <widget class="QMenuBar" name="menubar">
@@ -37,8 +45,8 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>534</width>
-     <height>23</height>
+     <width>517</width>
+     <height>26</height>
     </rect>
    </property>
   </widget>
