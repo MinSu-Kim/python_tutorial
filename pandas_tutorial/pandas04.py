@@ -39,12 +39,21 @@ def stat_ex02():
     print(df_KTX.tail(3))
 
     print(df_KTX[1:2])
-    print(df_KTX.loc['2012'])
+    print(df_KTX.loc['2012'])          # '2012'
+    print(df_KTX.loc[index_list[1:2]]) # '2012'
+
     print(df_KTX['호남선 KTX'])
     print(df_KTX['경부선 KTX']['2012':'2014'])
-
+    print(df_KTX['경부선 KTX'][1:2])
     print(df_KTX[col_list[0:1]])
     print(df_KTX['경부선 KTX'][2:5])
+
+    # 하나의 원소 선택 2016년 호남선 KTX
+    print(df_KTX.loc['2016']['호남선 KTX'])
+    print(df_KTX.loc['2016','호남선 KTX'])
+    print(df_KTX['호남선 KTX']['2016'])
+    print(df_KTX['호남선 KTX'][5])
+    print(df_KTX['호남선 KTX'].loc['2016'])
 
     print(df_KTX.T)
 
