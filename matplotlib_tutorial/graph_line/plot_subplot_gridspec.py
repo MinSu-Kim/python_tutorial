@@ -2,12 +2,12 @@ import sys
 import numpy as np
 import matplotlib.pyplot as plt
 
-###--- Synthesizing data to be plotted ---###
+###  Synthesizing data to be plotted ###
 x = np.arange(5)     # Same as x = np.array(range(5))
-#y = x**2             # Basically item-wise calculation for numpy arrays
+# y = x**2             # Basically item-wise calculation for numpy arrays
 
-###--- Plotting Start ---###
-##-- Page Setup --##
+### Plotting Start ###
+## Page Setup ##
 fig = plt.figure()            # Define "figure" instance
 fig.set_size_inches(8,6)    # Physical page size in inches, (lx,ly)
 suptit = "Axes Setup: GridSpec"
