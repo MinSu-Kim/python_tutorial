@@ -38,11 +38,18 @@ class MyWidgets(QWidget):
         # The same signal can send a text string
         qcombox.currentIndexChanged[str].connect(self.text_changed)
 
+        qcombox2 = QComboBox()
+        qcombox2.setEditable(True)
+        qcombox2.setInsertPolicy(QComboBox.InsertAtBottom)
+        qcombox2.setMaxCount(5)
+
         hbox02 = QHBoxLayout()
         hbox02.addStretch(1)
         hbox02.addWidget(qcheckBox)
         hbox02.addStretch(1)
         hbox02.addWidget(qcombox)
+        hbox02.addStretch(1)
+        hbox02.addWidget(qcombox2)
         hbox02.addStretch(1)
 
         vbox = QVBoxLayout()
