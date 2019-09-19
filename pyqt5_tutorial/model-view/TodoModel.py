@@ -30,6 +30,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
     def __init__(self):
         QtWidgets.QMainWindow.__init__(self)
         Ui_MainWindow.__init__(self)
+        # uic.loadUi('mainwindow.ui', self)
         self.setupUi(self)
         self.model = TodoModel(todos=[(False, 'my first todo')])
         self.load()
