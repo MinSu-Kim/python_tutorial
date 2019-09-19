@@ -68,6 +68,7 @@ class MyWidgets(QWidget):
     def text_changed(self, s):
         print(s)
 
+
 class MainWindow(QMainWindow):
     def __init__(self):
         super().__init__()
