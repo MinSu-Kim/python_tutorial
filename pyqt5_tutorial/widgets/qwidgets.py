@@ -1,6 +1,7 @@
 from PyQt5.QtCore import Qt
 from PyQt5.QtGui import QPixmap
-from PyQt5.QtWidgets import QMainWindow, QLabel, QApplication, QHBoxLayout, QWidget, QCheckBox, QVBoxLayout, QComboBox
+from PyQt5.QtWidgets import QMainWindow, QLabel, QApplication, QHBoxLayout, QWidget, QCheckBox, QVBoxLayout, QComboBox, \
+    QListWidget, QLineEdit
 
 
 class MyWidgets(QWidget):
@@ -17,7 +18,7 @@ class MyWidgets(QWidget):
 
         lblImg = QLabel()
         lblImg.setPixmap(QPixmap('../../data/web.png'))
-        lblImg.setScaledContents(True)             #  가로 세로 비율을 유지하면서 크기가 조정
+        lblImg.setScaledContents(True)  # 가로 세로 비율을 유지하면서 크기가 조정
         lblImg.setAlignment(Qt.AlignCenter)
 
         hbox01 = QHBoxLayout()
@@ -43,6 +44,13 @@ class MyWidgets(QWidget):
         qcombox2.setInsertPolicy(QComboBox.InsertAtBottom)
         qcombox2.setMaxCount(5)
 
+        qList = QListWidget()
+        qList.addItems(["One", "Two", "Three"])
+
+        # In QListWidget there are two separate signals for the item, and the str
+        qList.currentItemChanged.connect(self.list_index_changed)
+        qList.currentTextChanged.connect(self.list_text_changed)
+
         hbox02 = QHBoxLayout()
         hbox02.addStretch(1)
         hbox02.addWidget(qcheckBox)
@@ -51,10 +59,32 @@ class MyWidgets(QWidget):
         hbox02.addStretch(1)
         hbox02.addWidget(qcombox2)
         hbox02.addStretch(1)
+        hbox02.addWidget(qList)
+        hbox02.addStretch(1)
+
+        self._lineEdit = QLineEdit()
+        self._lineEdit.setMaxLength(10)
+        self._lineEdit.setPlaceholderText("Enter your text")
+
+        # widget.setReadOnly(True) # uncomment this to make readonly
+
+        self._lineEdit.returnPressed.connect(self.line_edit_return_pressed)
+        self._lineEdit.selectionChanged.connect(self.line_edit_selection_changed)
+        self._lineEdit.textChanged.connect(self.line_edit_text_changed)
+        self._lineEdit.textEdited.connect(self.line_edit_text_edited)
+
+        self._lblResult = QLabel()
+
+        hbox03 = QHBoxLayout()
+        hbox03.addStretch(1)
+        hbox03.addWidget(self._lineEdit)
+        hbox03.addStretch(1)
+        hbox03.addWidget(self._lblResult)
 
         vbox = QVBoxLayout()
         vbox.addLayout(hbox01)
         vbox.addLayout(hbox02)
+        vbox.addLayout(hbox03)
 
         self.setLayout(vbox)
 
@@ -68,12 +98,34 @@ class MyWidgets(QWidget):
     def text_changed(self, s):
         print(s)
 
+    def list_index_changed(self, i):
+        print(i.text())
+
+    def list_text_changed(self, s):
+        print(s)
+
+    def line_edit_return_pressed(self):
+        print("Return pressed!")
+        self._lblResult.setText("BOOM!")
+
+    def line_edit_selection_changed(self):
+        print("Selection changed")
+        print(self._lineEdit.selectedText())
+
+    def line_edit_text_changed(self, s):
+        print("Text changed...")
+        print(s)
+
+    def line_edit_text_edited(self, s):
+        print("Text edited...")
+        print(s)
+
 
 class MainWindow(QMainWindow):
     def __init__(self):
         super().__init__()
         myWidget = MyWidgets()
-        self.setCentralWidget(myWidget)   # self.setLayout(hbox)  # QHBoxLayout, QVBoxLayout 같은 layout 사용못함
+        self.setCentralWidget(myWidget)  # self.setLayout(hbox)  # QHBoxLayout, QVBoxLayout 같은 layout 사용못함
         self.setGeometry(300, 700, 350, 150)
 
 
