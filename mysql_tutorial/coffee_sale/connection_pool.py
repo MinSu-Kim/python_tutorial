@@ -22,14 +22,3 @@ class DatabaseConnectionPool(object):
         return self.__cnxPool.get_connection()
 
 
-if __name__ == '__main__':
-    connection = DatabaseConnectionPool.get_instance().get_connection()
-    cursor = connection.cursor()
-    cursor.execute("select * from product")
-    rows = cursor.fetchall()
-
-    print('Total Row(s):', cursor.rowcount)
-    for row in rows:
-        print(type(row), " => ",  row)
-
-    connection.close()
