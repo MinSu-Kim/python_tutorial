@@ -1,4 +1,7 @@
+import mysql
+from mysql.connector import MySQLConnection
 from mysql.connector.pooling import MySQLConnectionPool
+
 from mysql_tutorial.connect.second.python_mysql_dbconfig import read_db_config
 
 
@@ -24,6 +27,8 @@ class DatabaseConnectionPool(object):
 
 if __name__ == '__main__':
     connection = DatabaseConnectionPool.get_instance().get_connection()
+    print(type(connection))
+
     cursor = connection.cursor()
     cursor.execute("select * from product")
     rows = cursor.fetchall()
@@ -33,3 +38,4 @@ if __name__ == '__main__':
         print(type(row), " => ",  row)
 
     connection.close()
+

@@ -1,5 +1,4 @@
 class Product:
-
     def __init__(self, code=None, name=None):
         self.__code = code
         self.__name = name
@@ -26,11 +25,11 @@ class Product:
 
 if __name__ == '__main__':
     pdt = Product('C001', '라떼')
-    print(str(pdt))
+    print(pdt)
 
     pdt.code = 'C002'
     pdt.name = '카페라떼'
-    print(str(pdt))
+    print(pdt)
 
     ptd2 = Product()
     ptd2.code = 'C003'
