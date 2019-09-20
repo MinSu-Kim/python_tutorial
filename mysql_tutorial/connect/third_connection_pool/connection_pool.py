@@ -1,5 +1,5 @@
 from mysql.connector.pooling import MySQLConnectionPool
-from mysql_tutorial.connect.python_mysql_dbconfig import read_db_config
+from mysql_tutorial.connect.second.python_mysql_dbconfig import read_db_config
 
 
 class DatabaseConnectionPool(object):

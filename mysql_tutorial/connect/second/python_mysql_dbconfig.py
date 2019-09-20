@@ -22,3 +22,8 @@ def read_db_config(filename='config.ini', section='mysql'):
         raise Exception('{0} not found in the {1} file'.format(section, filename))
 
     return db
+
+
+if __name__ == "__main__":
+    db = read_db_config()
+    print(type(db), " : ", db)
