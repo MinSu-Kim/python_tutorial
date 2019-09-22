@@ -1,4 +1,5 @@
-from PyQt5.QtWidgets import QApplication, QWidget, QPushButton, QMainWindow
+from PyQt5.QtGui import QFont
+from PyQt5.QtWidgets import QApplication, QWidget, QPushButton, QMainWindow, QToolTip
 from PyQt5.QtCore import QCoreApplication
 
 
@@ -8,9 +9,19 @@ class MyApp(QMainWindow):
         self._initUI()
 
     def _initUI(self):
+        # 여백 지정
+        self.setContentsMargins(20, 20, 20, 20)
+
+        # 툴팁에 사용될 폰트를 설정
+        QToolTip.setFont(QFont('SansSerif', 10))
+        # 메인 창의 툴팁 설정
+        self.setToolTip('This is a <b>QMainWindow</b> widget')
+
         # 생성자(QPushButton())의 첫 번째 파라미터에는 버튼에 표시될 텍스트를 입력
         # 두 번째 파라미터에는 버튼이 위치할 부모 위젯을 입력
         btn = QPushButton('Quit', self)
+        # 버튼에 툴팁 설정
+        btn.setToolTip('This is a <b>QPushButton</b> widget')
         # btn.move(50, 50)
         # btn.resize(btn.sizeHint())
         self.setCentralWidget(btn)
