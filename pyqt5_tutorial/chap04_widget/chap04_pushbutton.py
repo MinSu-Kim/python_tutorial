@@ -1,20 +1,11 @@
 from PyQt5.QtWidgets import QApplication, QMainWindow, QGroupBox, QVBoxLayout, QPushButton
 
 
-class MyApp(QMainWindow):
+class MyPushButton(QGroupBox):
 
     def __init__(self):  # self는 MyApp 객체
         super().__init__()
-        self.statusBar()
-        self.init_ui()
-
-    def init_ui(self):
-        self.setWindowTitle('My First Application')  # 타이틀바에 나타나는 창의 제목을 설정
-        self.setGeometry(300, 300, 400, 200)
-        self.setCentralWidget(self.create_group_pushbutton())
-
-    def create_group_pushbutton(self):
-        groupbox = QGroupBox('QPushButton')
+        self.setTitle('QPushButton')
 
         push_btn01= QPushButton('&Button1', self)  # shortcut Alt+b
         push_btn01.setCheckable(True)
@@ -37,19 +28,10 @@ class MyApp(QMainWindow):
         vbox.addWidget(self.push_btn02)
         vbox.addWidget(push_btn03)
         vbox.addWidget(push_btn04)
-        groupbox.setLayout(vbox)
-
-        return groupbox
+        self.setLayout(vbox)
 
     def change_toggle(self):
         if self.push_btn02.isEnabled():
             self.push_btn02.setEnabled(False)
         else:
             self.push_btn02.setEnabled(True)
-
-
-if __name__ == '__main__':
-    app = QApplication([])  # 모든 PyQt5 어플리케이션은 어플리케이션 객체를 생성해야 합
-    ex = MyApp()
-    ex.show()
-    app.exec_()

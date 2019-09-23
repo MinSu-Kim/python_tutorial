@@ -1,17 +1,15 @@
 from PyQt5.QtCore import Qt
-from PyQt5.QtWidgets import QApplication, QMainWindow, QLabel, QVBoxLayout, QWidget
+from PyQt5.QtWidgets import QApplication, QMainWindow, QLabel, QVBoxLayout, QWidget, QGroupBox
 
 
-class MyApp(QMainWindow):
+class MyLabel(QGroupBox):
 
     def __init__(self):  # self는 MyApp 객체
         super().__init__()
-        self.statusBar()
+        self.setTitle('QLabel')
         self.init_ui()
 
     def init_ui(self):
-        self.setWindowTitle('My First Application')  # 타이틀바에 나타나는 창의 제목을 설정
-        self.setGeometry(300, 300, 400, 200)
         label1 = QLabel('First Label', self)
         label1.setAlignment(Qt.AlignCenter)
 
@@ -32,14 +30,4 @@ class MyApp(QMainWindow):
         layout.addWidget(label1)
         layout.addWidget(label2)
 
-        widget = QWidget()
-        widget.setLayout(layout)
-
-        self.setCentralWidget(widget)
-
-
-if __name__ == '__main__':
-    app = QApplication([])  # 모든 PyQt5 어플리케이션은 어플리케이션 객체를 생성해야 합
-    ex = MyApp()
-    ex.show()
-    app.exec_()
+        self.setLayout(layout)
