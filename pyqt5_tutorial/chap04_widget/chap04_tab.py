@@ -5,7 +5,7 @@ class MyTabWidget(QGroupBox):
 
     def __init__(self):
         super().__init__()
-        self.setTitle('제목')
+        self.setTitle('QTabWidget')
         self.init_ui()
 
     def init_ui(self):
