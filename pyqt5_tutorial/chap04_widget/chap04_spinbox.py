@@ -1,5 +1,6 @@
-from PyQt5.QtCore import QDate, QTime
-from PyQt5.QtWidgets import QGroupBox, QVBoxLayout, QLabel, QSpinBox, QHBoxLayout, QDoubleSpinBox, QDateEdit, QTimeEdit
+from PyQt5.QtCore import QDate, QTime, QDateTime
+from PyQt5.QtWidgets import QGroupBox, QVBoxLayout, QLabel, QSpinBox, QHBoxLayout, QDoubleSpinBox, QDateEdit, QTimeEdit, \
+    QDateTimeEdit
 
 
 class MySpinBox(QGroupBox):
@@ -13,8 +14,34 @@ class MySpinBox(QGroupBox):
         layout_group1 = self.group_int_spinbox()
         layout_group2 = self.group_double_spinbox()
         layout_group3 = self.group_date_spinbox()
+        layout_group4 = self.group_time_spinbox()
+        layout_group5 = self.group_datetime_spinbox()
 
+        layout = QVBoxLayout()
+        layout.addLayout(layout_group1)
+        layout.addLayout(layout_group2)
+        layout.addLayout(layout_group3)
+        layout.addLayout(layout_group4)
+        layout.addLayout(layout_group5)
 
+        self.setLayout(layout)
+
+    def group_datetime_spinbox(self):
+        group2 = QGroupBox('QDateTimeEdit')
+        lbl = QLabel('QDateTimeEdit')
+        date_time_edit = QDateTimeEdit(self)
+        date_time_edit.setDateTime(QDateTime.currentDateTime())
+        date_time_edit.setDateTimeRange(QDateTime(1900, 1, 1, 00, 00, 00), QDateTime(2100, 1, 1, 00, 00, 00))
+        date_time_edit.setDisplayFormat('yyyy-MM-dd hh:mm:ss')
+        date_time_edit.dateTimeChanged.connect(self.datetime_value_change)
+        self.lbl5 = QLabel(date_time_edit.dateTime().toString('yyyy-MM-dd hh:mm:ss'))
+        layout_group5 = QHBoxLayout()
+        layout_group5.addWidget(lbl)
+        layout_group5.addWidget(date_time_edit)
+        layout_group5.addWidget(self.lbl5)
+        return layout_group5
+
+    def group_time_spinbox(self):
         group2 = QGroupBox('QTimeEdit')
         lbl = QLabel('QTimeEdit')
         timeedit = QTimeEdit(self)
@@ -25,19 +52,11 @@ class MySpinBox(QGroupBox):
         # dateedit.setDateRange(QDate(1900, 1, 1), QDate(2100, 12, 31))
         # self.lbl4 = QLabel(QTime.toString(timeedit.dateTime, 'hh:mm:ss'))
         self.lbl4 = QLabel(timeedit.time().toString('hh:mm:ss'))
-
         layout_group4 = QHBoxLayout()
         layout_group4.addWidget(lbl)
         layout_group4.addWidget(timeedit)
         layout_group4.addWidget(self.lbl4)
-
-        layout = QVBoxLayout()
-        layout.addLayout(layout_group1)
-        layout.addLayout(layout_group2)
-        layout.addLayout(layout_group3)
-        layout.addLayout(layout_group4)
-
-        self.setLayout(layout)
+        return layout_group4
 
     def group_date_spinbox(self):
         lbl = QLabel('QDateEdit')
@@ -98,4 +117,7 @@ class MySpinBox(QGroupBox):
         self.lbl3.setText(QDate.toString(t, 'yyyy-MM-dd'))
 
     def time_value_change(self, t):
-        self.lbl4.setText( t.toString('hh:mm:ss'))
+        self.lbl4.setText(t.toString('hh:mm:ss'))
+
+    def datetime_value_change(self, dt):
+        self.lbl5.setText(dt.toString('yyyy-MM-dd hh:mm:ss'))

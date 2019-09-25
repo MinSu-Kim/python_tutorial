@@ -4,6 +4,7 @@ from PyQt5.QtWidgets import QVBoxLayout, QWidget, QHBoxLayout, QMainWindow, QApp
 from pyqt5_tutorial.chap04_widget.chap04_calendar import MyCalendar
 from pyqt5_tutorial.chap04_widget.chap04_checkbox import MyCheckBox
 from pyqt5_tutorial.chap04_widget.chap04_combobox import MyComboBox
+from pyqt5_tutorial.chap04_widget.chap04_dialog import MyDialogs
 from pyqt5_tutorial.chap04_widget.chap04_groupbox import MyGroupBox
 from pyqt5_tutorial.chap04_widget.chap04_label import MyLabel
 from pyqt5_tutorial.chap04_widget.chap04_line_edit2 import MyLineEditTest
@@ -17,6 +18,8 @@ from pyqt5_tutorial.chap04_widget.chap04_spinbox import MySpinBox
 from pyqt5_tutorial.chap04_widget.chap04_splitter import MySplitter
 from pyqt5_tutorial.chap04_widget.chap04_tab import MyTabWidget
 from pyqt5_tutorial.chap04_widget.chap04_tabwidget_advance import MyTabWidgetAdv
+from pyqt5_tutorial.chap04_widget.chap04_textbrowser import MyTextBrowser
+from pyqt5_tutorial.chap04_widget.chap04_textedit import MyTextEdit
 
 
 class MyApp(QMainWindow):
@@ -51,11 +54,18 @@ class MyApp(QMainWindow):
         h_box03.addWidget(MyCalendar())
         h_box03.addWidget(MySpinBox())
 
+        h_box04 = QHBoxLayout()
+        h_box04.addWidget(MyTextBrowser())
+        h_box04.addWidget(MyTextEdit())
+        h_box04.addWidget(MyDialogs(self))
+        h_box04.addStretch(2)
+
         v_box = QVBoxLayout()
         v_box.addWidget(MyPixmap())
         v_box.addLayout(h_box01)
         v_box.addLayout(h_box02)
         v_box.addLayout(h_box03)
+        v_box.addLayout(h_box04)
 
         widget = QWidget()
         widget.setLayout(v_box)
