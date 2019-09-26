@@ -96,7 +96,6 @@ class MyListWithModel(QGroupBox):
         for i in indexes:
             print(self.model.data[i.row()])
 
-
     def clear_listview(self):
         self.model.data = []
         self.model.layoutChanged.emit()
