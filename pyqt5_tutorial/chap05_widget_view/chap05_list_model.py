@@ -44,7 +44,7 @@ class MyListWithModel(QGroupBox):
         add_btn.clicked.connect(self.add_item)
         insert_btn.clicked.connect(self.insert_pos_item)
 
-        print_btn.clicked.connect(lambda: print(self.listview.selectedIndexes()[0]))
+        print_btn.clicked.connect(lambda: print(self.model.data[self.listview.selectedIndexes()[0].row()]))
         print_multi_btn.clicked.connect(self.print_multi_items)
         remove_btn.clicked.connect(self.remove_current_item)
         clear_btn.clicked.connect(self.clear_listview)
@@ -91,7 +91,6 @@ class MyListWithModel(QGroupBox):
         print(type(indexes))
         for i in indexes:
             print(self.model.data[i.row()])
-
 
     def clear_listview(self):
         self.model.data = []

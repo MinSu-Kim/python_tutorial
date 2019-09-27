@@ -2,6 +2,7 @@ from PyQt5.QtWidgets import QGroupBox, QVBoxLayout, QLabel, QHBoxLayout, QListWi
     QWidget, QLineEdit, QPushButton, QSpinBox
 
 from pyqt5_tutorial.chap05_widget_view.chap05_list import MySimpleList
+from pyqt5_tutorial.chap05_widget_view.chap05_list_model import MyListWithModel
 
 
 class MyListTable(QMainWindow):
@@ -14,9 +15,14 @@ class MyListTable(QMainWindow):
 
     def init_ui(self):
         group_list = MySimpleList()
+        group_list_model = MyListWithModel()
+
+        layout_list = QHBoxLayout()
+        layout_list.addWidget(group_list)
+        layout_list.addWidget(group_list_model)
 
         layout = QVBoxLayout()
-        layout.addWidget(group_list)
+        layout.addLayout(layout_list)
         layout.addStretch(1)
 
         widget = QWidget()
