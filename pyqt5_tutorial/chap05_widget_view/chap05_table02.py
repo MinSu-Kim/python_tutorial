@@ -54,7 +54,10 @@ class MySimpleTable01(QGroupBox):
         # table.horizontalHeader().setSectionsClickable(False)  # 표 머리글의 클릭을 금지
 
         # Fill the first line
-        self.table.setItem(0, 0, QTableWidgetItem("Text in column 1"))
+        i = QTableWidgetItem("Text in column 1")
+        i.setTextAlignment(Qt.AlignCenter)
+        # self.table.setItem(0, 0, QTableWidgetItem("Text in column 1"))
+        self.table.setItem(0, 0, i)
         self.table.setItem(0, 1, QTableWidgetItem("Text in column 2"))
         self.table.setItem(0, 2, QTableWidgetItem("Text in column 3"))
 

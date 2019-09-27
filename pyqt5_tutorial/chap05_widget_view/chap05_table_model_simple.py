@@ -1,8 +1,9 @@
+from PyQt5.QtCore import Qt
 from PyQt5.QtGui import QStandardItemModel, QStandardItem
 from PyQt5.QtWidgets import QGroupBox, QVBoxLayout, QLabel, QTableWidget, QTableWidgetItem, QTableView, QHeaderView
 
 
-class MyTableViewModel(QGroupBox):
+class MyTableViewModelSimple(QGroupBox):
 
     def __init__(self):
         super().__init__()
@@ -16,6 +17,7 @@ class MyTableViewModel(QGroupBox):
         for row in range(4):
             for column in range(4):
                 i = QStandardItem("row %s,column %s" % (row, column))
+                i.setTextAlignment(Qt.AlignCenter)
                 self.model.setItem(row, column, i)
 
         self.tableView = QTableView()
