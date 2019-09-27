@@ -4,10 +4,6 @@ from PyQt5.QtWidgets import QGroupBox, QVBoxLayout, QHBoxLayout, QApplication, \
 from pyqt5_tutorial.chap05_widget_view.ListModel import DataModel
 
 
-class QStringModel(object):
-    pass
-
-
 class MyListWithModel(QGroupBox):
 
     def __init__(self):
@@ -48,7 +44,7 @@ class MyListWithModel(QGroupBox):
         add_btn.clicked.connect(self.add_item)
         insert_btn.clicked.connect(self.insert_pos_item)
 
-        print_btn.clicked.connect(lambda: print(self.listview.selectedIndexes()[0]))
+        print_btn.clicked.connect(lambda: print(self.model.data[self.listview.selectedIndexes()[0].row()]))
         print_multi_btn.clicked.connect(self.print_multi_items)
         remove_btn.clicked.connect(self.remove_current_item)
         clear_btn.clicked.connect(self.clear_listview)
