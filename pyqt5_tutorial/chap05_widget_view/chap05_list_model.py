@@ -4,10 +4,6 @@ from PyQt5.QtWidgets import QGroupBox, QVBoxLayout, QHBoxLayout, QApplication, \
 from pyqt5_tutorial.chap05_widget_view.ListModel import DataModel
 
 
-class QStringModel(object):
-    pass
-
-
 class MyListWithModel(QGroupBox):
 
     def __init__(self):
