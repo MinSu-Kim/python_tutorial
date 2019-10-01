@@ -1,9 +1,11 @@
 from PyQt5.QtCore import Qt
 from PyQt5.QtGui import QStandardItemModel, QStandardItem
-from PyQt5.QtWidgets import QGroupBox, QVBoxLayout, QTableView, QAbstractItemView, QTableWidgetItem
+from PyQt5.QtWidgets import QGroupBox, QVBoxLayout, QTableView, QAbstractItemView
+
+from pyqt5_tutorial.chap05_widget_view.TableModel import MyTableModel
 
 
-class MyTableViewModelSimple01(QGroupBox):
+class MyTableViewModelSimple02(QGroupBox):
 
     def __init__(self):
         super().__init__()
@@ -13,12 +15,9 @@ class MyTableViewModelSimple01(QGroupBox):
     def init_ui(self):
         # create the view
         tableView = QTableView()
-        self.model = QStandardItemModel(0, 4)  # 0행 4열의 모델 정의
-        self.model.setHorizontalHeaderLabels(['번호', '이름', '나이', '주소'])
+        data = [(1, 'aaa', 20, '대구'), (2, 'bbb', 30, '서울')]
+        self.model = MyTableModel(data, ['번호', '이름', '나이', '주소'])
         tableView.setModel(self.model)
-
-        # set the minimum size
-        # tableView.setMinimumSize(400, 300)
 
         # header size
         tableView.horizontalHeader().resizeSection(0, 20)
@@ -40,36 +39,24 @@ class MyTableViewModelSimple01(QGroupBox):
         tableView.setSelectionBehavior(QAbstractItemView.SelectRows)
 
         # hide vertical header
-        vh = tableView.verticalHeader()
-        vh.setVisible(True)
+        hv = tableView.verticalHeader()
+        hv.setVisible(True)
 
         # set horizontal header properties
         hh = tableView.horizontalHeader()
         hh.setStretchLastSection(True)
 
-        self.fill_table_view([(1, 'aaa', 20, '대구'), (2, 'bbb', 30, '서울')])
-
+        self.fill_table_view([(3, 'aaa', 20, '대구'), (4, 'bbb', 30, '서울')])
         # set column width to fit contents
         # tableView.resizeColumnsToContents()
         # tableView.horizontalHeader().setSectionResizeMode(QHeaderView.Stretch)
-
         layout = QVBoxLayout()
         layout.addWidget(tableView)
 
         self.setLayout(layout)
 
     def fill_table_view(self, data):
-
-        for idx, (no, name, age, addr) in enumerate(data):
-            item_no = QStandardItem(str(no))
-            item_name = QStandardItem(name)
-            item_age = QStandardItem(str(age))
-            item_addr = QStandardItem(addr)
-
-            item_no.setTextAlignment(Qt.AlignCenter)
-            item_name.setTextAlignment(Qt.AlignCenter)
-            item_age.setTextAlignment(Qt.AlignRight | Qt.AlignVCenter)
-            item_addr.setTextAlignment(Qt.AlignLeft | Qt.AlignVCenter)
-
-            self.model.insertRow(idx, (item_no,item_name, item_age, item_addr))
-            # self.model.appendRow((item_no,item_name, item_age, item_addr))
+        for t in data:
+            self.model.data.append(t)
+            # self.model.data.insert(idx, t)
+            self.model.layoutChanged.emit()

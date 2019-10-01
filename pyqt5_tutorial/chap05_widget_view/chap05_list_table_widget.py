@@ -6,8 +6,9 @@ from pyqt5_tutorial.chap05_widget_view.chap05_list_model import MyListWithModel
 from pyqt5_tutorial.chap05_widget_view.chap05_table import MySimpleTable
 from pyqt5_tutorial.chap05_widget_view.chap05_table02 import MySimpleTable01
 from pyqt5_tutorial.chap05_widget_view.chap05_table_advance import MyAdvanceTable
-from pyqt5_tutorial.chap05_widget_view.chap05_table_model import MyTableViewModelAdvance
-from pyqt5_tutorial.chap05_widget_view.chap05_table_model_advance import MyTableViewModel
+from pyqt5_tutorial.chap05_widget_view.chap05_table_model import MyTableViewModelSimple01
+from pyqt5_tutorial.chap05_widget_view.chap05_table_model02 import MyTableViewModelSimple02
+from pyqt5_tutorial.chap05_widget_view.chap05_table_model_simple import MyTableViewModelSimple
 
 
 class MyListTable(QMainWindow):
@@ -15,7 +16,7 @@ class MyListTable(QMainWindow):
     def __init__(self):
         super().__init__()
         self.setWindowTitle('QListWidget & QTableWidget')
-        self.setGeometry(0, 0, 1200, 700)
+        self.setGeometry(0, 0, 1600, 900)
         self.init_ui()
 
     def init_ui(self):
@@ -24,13 +25,15 @@ class MyListTable(QMainWindow):
         layout_list.addWidget(MySimpleList())
         layout_list.addWidget(MyListWithModel())
         layout_list.addWidget(MySimpleTable())
+        layout_list.addWidget(MySimpleTable01())
 
         # tablewidget & tableView
         layout_table = QHBoxLayout()
-        layout_table.addWidget(MySimpleTable01())
         layout_table.addWidget(MyAdvanceTable())
-        layout_table.addWidget(MyTableViewModel())
-        layout_table.addWidget(MyTableViewModelAdvance())
+        layout_table.addWidget(MyTableViewModelSimple())
+        layout_table.addWidget(MyTableViewModelSimple01())
+        layout_table.addWidget(MyTableViewModelSimple02())
+        # layout_table.addStretch(1)
 
         # total alyout
         layout = QVBoxLayout()
