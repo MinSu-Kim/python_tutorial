@@ -50,7 +50,7 @@ class MyTableViewModelAdvance(QGroupBox):
         hh.setStretchLastSection(True)
 
         # 테이블 내용 정렬하는 방법 찾기
-        
+
         # set column width to fit contents
         # tableView.resizeColumnsToContents()
         # tableView.horizontalHeader().setSectionResizeMode(QHeaderView.Stretch)
