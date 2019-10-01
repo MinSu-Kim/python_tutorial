@@ -116,10 +116,22 @@ def list_comprehensions3():
     res = [str(round(pi, i)) for i in range(1, 6)]
     print(type(res), res)
 
+
+def list_comprehensions4():
+    from math import pi
+    res = [str(round(pi, i)) for i in range(1, 6)]
+
+    print(type(res), res, end='\n\n')
+
+    for i in range(1, 6):
+        print(type(str(round(pi, i))), str(round(pi, i)))
+
+
 if __name__ == "__main__":
-    list_method()
-    list_to_stack()
-    list_to_queue()
-    list_comprehensions1()
-    list_comprehensions2()
-    list_comprehensions3()
+    # list_method()
+    # list_to_stack()
+    # list_to_queue()
+    # list_comprehensions1()
+    # list_comprehensions2()
+    # list_comprehensions3()
+    list_comprehensions4()
