@@ -126,6 +126,62 @@ def list_comprehensions4():
     for i in range(1, 6):
         print(type(str(round(pi, i))), str(round(pi, i)))
 
+def list_comprehensions5():
+    # 길이가 4인 리스트 3개의 리스트로 구현된 3x4 행렬
+    matrix = [
+        [1, 2, 3, 4],
+        [5, 6, 7, 8],
+        [9, 10, 11, 12],
+    ]
+    print('matrix', matrix)
+
+    # 행과 열을 전치
+    transposed = [[row[i] for row in matrix] for i in range(4)]
+    print('type(transposed) : ', type(transposed), end='\n')
+    print('transposed : ', transposed, end='\n\n')
+
+    transposed = []
+    for i in range(4):
+        transposed.append([row[i] for row in matrix])
+    print('transposed : ', transposed, end='\n\n')
+
+    transposed = []
+    for i in range(4):
+        transposed_row = []
+        for row in matrix:
+            transposed_row.append(row[i])
+        transposed.append(transposed_row)
+
+    print('transposed : ', transposed)
+
+    zip_list = list(zip(*matrix))
+    print('type(zip_list) : ', type(zip_list), zip_list)
+    print('type(zip(*matrix)) : ', type(zip(*matrix)) , zip(*matrix))
+    for t in zip(*matrix):
+        print(type(t), t)
+
+    # Unpacking Argument Lists
+    print(list(range(3, 6)))  # normal call with separate arguments
+    args = [3, 6]
+    print(list(range(*args)))  # call with arguments unpacked from a list
+
+    # help(zip)
+
+def list_del():
+    a = [-1, 1, 66.25, 333, 333, 1234.5]
+    print('a : ', a)
+    del a[0]
+    print('del a[0] : ', a)
+
+    del a[2:4]
+    print('del a[2:4] : ', a)
+
+    del a[:]
+    print('del a[:] : ', a)
+
+    del a
+    print('del a : ', a)
+
 
 if __name__ == "__main__":
     # list_method()
@@ -134,4 +190,6 @@ if __name__ == "__main__":
     # list_comprehensions1()
     # list_comprehensions2()
     # list_comprehensions3()
-    list_comprehensions4()
+    # list_comprehensions4()
+    # list_comprehensions5()
+    list_del()
