@@ -2,7 +2,7 @@
 from PyQt5.QtWidgets import QApplication, QWidget, QLCDNumber, QDial, QVBoxLayout
 
 
-class MyApp(QWidget):
+class MySignalSlot01(QWidget):
 
     def __init__(self):
         super().__init__()
@@ -18,13 +18,4 @@ class MyApp(QWidget):
         self.setLayout(vbox)
 
         dial.valueChanged.connect(lcd.display)
-        print(dir(lcd))
-        self.setWindowTitle('Signal and Slot')
-        self.setGeometry(300, 300, 200, 200)
-        self.show()
 
-
-if __name__ == '__main__':
-    app = QApplication([])
-    ex = MyApp()
-    app.exec_()
