@@ -31,6 +31,18 @@ def binary_search(sorted_list, search_key):
     return None
 
 
+def lotto_number():
+    lotto = set()
+
+    print(len(lotto))
+    while len(lotto) < 6:
+        lotto.add(random_number())
+    print("{} lotto number => {}".format(len(lotto), lotto))
+    lotto_list = list(lotto)
+
+    print("sorted lotto {}".format(bubble_sort(lotto_list)))
+
+
 if __name__ == "__main__":
     random_list = []
     rnd.seed(1)
@@ -45,3 +57,5 @@ if __name__ == "__main__":
     search_key = 5
     find_index = binary_search(sorted_list, search_key)
     print('key {} 는 {}'.format(search_key, str(find_index) + '번째 존재' if find_index != None else 'not found'))
+
+    lotto_number()
