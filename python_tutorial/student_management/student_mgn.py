@@ -12,7 +12,10 @@ student_management 패키지를 추가
 """
 
 
-def showMenu():
+import os.path
+
+
+def show_menu():
     try:
         res = int(input("1. 학생목록, 2. 학생 추가, 3. 학생 수정, 4. 학생 삭제, 5. 종료 [1-5] 번호를 입력하세요."))
         return res
@@ -27,14 +30,14 @@ file_name = "std_list.txt"
 
 
 def std_list_read_file():
-    with open(file_name, 'r', encoding='utf-8') as f:
-        for line in f:
-            std = line.strip().split(',')
-            std_list.append(std)
+    if os.path.isfile(file_name):
+        with open(file_name, 'r', encoding='utf-8') as f:
+            for line in f:
+                std = line.strip().split(',')
+                std_list.append(std)
 
 
-def std_list_write_file(std_list):
-    global file_name
+def std_list_write_file():
     with open(file_name, 'w', encoding='utf-8') as f:
         for std in std_list:
             format_string = "{},{},{},{},{}\n".format(std[0], std[1], std[2], std[3], std[4])
@@ -46,7 +49,7 @@ def show_std_list():
     for std in std_list:
         total = int(std[2]) + int(std[3]) + int(std[4])
         avg = total/float(3)
-        std_info = "{:3d} {:5} {:3d}  {:3d}   {:3d}   {:3d} {:7.2f}".format(int(std[0]), std[1], int(std[2]), int(std[3]), int(std[4]), total, avg)
+        std_info = "{:3d} {:5} {:3d} {:3d}  {:3d} {:4d} {:7.2f}".format(int(std[0]), std[1], int(std[2]), int(std[3]), int(std[4]), total, avg)
         print(std_info)
 
 
@@ -59,7 +62,6 @@ def add_std_info():
 def get_std_info(msg):
     res = input(msg)
     std_info = res.split()
-    # std_info.insert(0, len(std_list) + 1)
     return std_info
 
 
@@ -88,7 +90,7 @@ def delete_std_info():
 if __name__ == "__main__":
     std_list_read_file()
     while True:
-        res = showMenu()
+        res = show_menu()
         if res == 1:
             show_std_list()
         elif res == 2:
@@ -99,6 +101,6 @@ if __name__ == "__main__":
             print("학생 삭제")
             delete_std_info()
         else:
-            std_list_write_file(std_list)
+            std_list_write_file()
             break;
     print("프로그램 종료")
