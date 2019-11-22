@@ -285,3 +285,4 @@ gradle-app.setting
 # End of https://www.gitignore.io/api/git,linux,python,gradle,windows,pycharm
 /web_scraping/download/
 /web_scraping/NaverMusicTop100.txt
+/python_tutorial/student_management/json_test.txt
