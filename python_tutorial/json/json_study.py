@@ -18,11 +18,11 @@ student = [
 print(type(student))  # dictionary
 
 # write
-json_student = json.dumps(student)  # json형태로 변환(serialize)
+json_student = json.dumps(student, ensure_ascii=False)  # json형태로 변환(serialize)  indent=4 들여쓰기 옵션 , sort_keys=True key값으로 정렬
 print(type(json_student))
 
 with open('json_test.txt', 'w', encoding='utf-8') as f:
-    json.dump(json_student, f)  # json 파일 작성 한글은 unicode형태로 저장
+    json.dump(json_student, f, ensure_ascii=False)  # json 파일 작성 한글은 unicode형태로 저장 indent=4 들여쓰기 옵션, sort_keys=True key값으로 정렬
 
 # read
 with open('json_test.txt', 'r', encoding='utf-8') as f:  # json 형태의 파일 load
