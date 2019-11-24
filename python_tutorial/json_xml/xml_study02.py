@@ -17,3 +17,8 @@ if __name__ == "__main__":
     print("[사용자 {0}의 신체정보]".format(user_name))
     print("*키: {0}{1}".format(height, height_unit))
     print("*몸무게: {0}{1}".format(weight, weight_unit))
+
+    # xml_attribs=False 속성을 이용하여 XML형식의 데이터를 딕셔너리로 변환
+    dict_data2 = xmltodict.parse(xml_data, xml_attribs=False)
+    print(type(dict_data2))
+    print(dict_data2)
