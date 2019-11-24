@@ -22,10 +22,10 @@ json_student = json.dumps(student)  # json형태로 변환(serialize)
 print(type(json_student))
 
 with open('json_test.txt', 'w', encoding='utf-8') as f:
-    json.dump(json_student, f)  # json 파일 작성 한글은 unicode형태로 저장
+    json.dump(json_student, f)  # json_xml 파일 작성 한글은 unicode형태로 저장
 
 # read
-with open('json_test.txt', 'r', encoding='utf-8') as f:  # json 형태의 파일 load
+with open('json_test.txt', 'r', encoding='utf-8') as f:  # json_xml 형태의 파일 load
     x = json.load(f)
     print(type(x), x)
 

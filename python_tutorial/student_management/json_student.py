@@ -20,7 +20,7 @@ file_name = 'json_test.txt'
 
 def std_list_read_file():
     if os.path.isfile(file_name):
-        with open(file_name, 'r', encoding='utf-8') as f:  # json 형태의 파일 load
+        with open(file_name, 'r', encoding='utf-8') as f:  # json_xml 형태의 파일 load
             x = json.load(f)
             return json.loads(x)
     else:
