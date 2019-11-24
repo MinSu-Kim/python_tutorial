@@ -55,9 +55,9 @@ def show_std_list(students):
 
 
 def std_list_write_file(students):
-    json_student = json.dumps(students)
+    json_student = json.dumps(students, ensure_ascii=False)
     with open(file_name, 'w', encoding='utf-8') as f:
-        json.dump(json_student, f)
+        json.dump(json_student, f, ensure_ascii=False)
 
 
 def add_std_info(students):
