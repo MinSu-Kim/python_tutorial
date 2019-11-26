@@ -1,6 +1,6 @@
 class Car:
-    __max_speed = 0
-    __name = ""
+    # __max_speed = 0
+    # __name = ""
 
     def __init__(self):
         self.__max_speed = 200
