@@ -8,7 +8,7 @@ def connect():  # connect()함수를 사용하여 MySQL 서버에 연결
 
     try:
         # 호스트, 데이터베이스, 사용자 및 비밀번호의 네 가지 매개 변수
-        conn = mysql.connector.connect(host="localhost", database="coffee2", user="user_coffee2", password="rootroot")
+        conn = mysql.connector.connect(host="localhost", database="coffee", user="user_coffee", password="rootroot")
         # MySQL 데이터베이스에 성공적으로 연결되었는지 확인
         if conn.is_connected():
             print('Connected to MySQL database')
