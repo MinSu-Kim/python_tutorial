@@ -12,9 +12,10 @@ class DepartmentForm(QWidget):
         self.ui = uic.loadUi("department.ui")
         self.ui.table.setHorizontalHeaderLabels(["부서번호", "부서명", "위치"])
         self.ui.show()
+
         self.ui.table.horizontalHeader().setSectionResizeMode(QHeaderView.Stretch)
         self.ui.table.setSelectionBehavior(QAbstractItemView.SelectRows)  # # row단위 선택
-        self.ui.table.setEditTriggers(QAbstractItemView.NoEditTriggers)# 셀 내용 수정불가
+        self.ui.table.setEditTriggers(QAbstractItemView.NoEditTriggers)  # 셀 내용 수정불가
 
         self.ui.addBtn.clicked.connect(self.addItem)
         self.ui.updateBtn.clicked.connect(self.updateItem)
@@ -27,11 +28,9 @@ class DepartmentForm(QWidget):
         self.ui.leFloor.clear()
 
     def updateItem(self):
-        selectedIndex = self.ui.table.selectedIndexes()[0]
+        selected_idx = self.ui.table.selectedIndexes()[0]
 
-        item_no = self.ui.table.item(selectedIndex.row(), 0)
-        item_name = self.ui.table.item(selectedIndex.row(), 1)
-        item_floor = self.ui.table.item(selectedIndex.row(), 2)
+        item_no, item_name, item_floor = self.get_item_from_selected_table(selected_idx)
 
         self.ui.leDeptNo.setText(item_no.text())
         self.ui.leDeptName.setText(item_name.text())
@@ -42,21 +41,7 @@ class DepartmentForm(QWidget):
         self.ui.table.removeRow(selectedIndex.row())
 
     def addItem(self):
-        no = self.ui.leDeptNo.text()
-        name = self.ui.leDeptName.text()
-        floor = self.ui.leFloor.text()
-
-        item_no = QTableWidgetItem()
-        item_no.setData(Qt.DisplayRole, no)
-        item_no.setTextAlignment(Qt.AlignCenter)
-
-        item_name = QTableWidgetItem()
-        item_name.setData(Qt.DisplayRole, name)
-        item_name.setTextAlignment(Qt.AlignCenter)
-
-        item_floor = QTableWidgetItem()
-        item_floor.setData(Qt.DisplayRole, floor)
-        item_floor.setTextAlignment(Qt.AlignRight | Qt.AlignVCenter)
+        item_no, item_name, item_floor = self.get_item_from_le()
 
         currentRowCount = self.ui.table.rowCount()  # necessary even when there are no rows in the table
         self.ui.table.insertRow(currentRowCount)
@@ -64,21 +49,39 @@ class DepartmentForm(QWidget):
         self.ui.table.setItem(currentRowCount, 1, item_name)
         self.ui.table.setItem(currentRowCount, 2, item_floor)
 
+    def get_item_from_le(self):
+        no = self.ui.leDeptNo.text()
+        name = self.ui.leDeptName.text()
+        floor = self.ui.leFloor.text()
+
+        return self.create_item(no, name, floor)
+
+    def create_item(self, no, name, floor):
+        item_no = QTableWidgetItem()
+        item_no.setData(Qt.DisplayRole, no)
+
+        item_name = QTableWidgetItem()
+        item_name.setData(Qt.DisplayRole, name)
+
+        item_floor = QTableWidgetItem()
+        item_floor.setData(Qt.DisplayRole, floor)
+        return self.item_alignment(item_no, item_name, item_floor)
+
+    def item_alignment(self, item_no, item_name, item_floor):
+        item_no.setTextAlignment(Qt.AlignCenter)
+        item_name.setTextAlignment(Qt.AlignCenter)
+        item_floor.setTextAlignment(Qt.AlignRight | Qt.AlignVCenter)
+        return item_no, item_name, item_floor
+
+    def get_item_from_selected_table(self, index):
+        item_no = self.ui.table.item(index.row(), 0)
+        item_name = self.ui.table.item(index.row(), 1)
+        item_floor = self.ui.table.item(index.row(), 2)
+        return item_no, item_name, item_floor
 
     def load_data(self, data):
         for idx, (no, name, floor) in enumerate(data):
-            item_no = QTableWidgetItem()
-            item_no.setData(Qt.DisplayRole, no)
-            item_no.setTextAlignment(Qt.AlignCenter)
-
-            item_name = QTableWidgetItem()
-            item_name.setData(Qt.DisplayRole, name)
-            item_name.setTextAlignment(Qt.AlignCenter)
-
-            item_floor = QTableWidgetItem()
-            item_floor.setData(Qt.DisplayRole, floor)
-            item_floor.setTextAlignment(Qt.AlignRight | Qt.AlignVCenter)
-
+            item_no, item_name, item_floor = self.create_item(no, name, floor)
             self.ui.table.setItem(idx, 0, item_no)
             self.ui.table.setItem(idx, 1, item_name)
             self.ui.table.setItem(idx, 2, item_floor)
