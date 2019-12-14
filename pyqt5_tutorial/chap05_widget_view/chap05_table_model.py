@@ -21,6 +21,7 @@ class MyTableViewModelSimple01(QGroupBox):
         # tableView.setMinimumSize(400, 300)
 
         # header size
+
         tableView.horizontalHeader().resizeSection(0, 20)
         tableView.horizontalHeader().resizeSection(1, 60)
         tableView.horizontalHeader().resizeSection(2, 100)

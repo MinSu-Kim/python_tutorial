@@ -21,10 +21,13 @@ def add_std_info():
 
 def update_std_info(students):
     res = input("수정할 학생번호를 입력하세요. >>")
-
     find_std = students.find_student(Student(no=int(res)))
     std_info = get_std_info("수정할 국어 영어 수학을 입력하세요. ex)90 90 90 >> ")
-    return Student(find_std.no, find_std.name, int(std_info[0]), int(std_info[1]), int(std_info[2]))
+    userdict = {}
+    userdict['no'] = find_std.no
+    userdict['name'] = find_std.name
+    userdict['score'] = {'국어': int(std_info[0]), '영어': int(std_info[1]), '수학': int(std_info[2])}
+    return Student(userdict)
 
 
 def get_std_info(msg):
@@ -45,7 +48,6 @@ if __name__ == "__main__":
         elif res == 3:
             students.show_std_list()
             upstd = update_std_info(students)
-            print(upstd)
             students.update_std_info(upstd)
         elif res == 4:
             students.show_std_list()
