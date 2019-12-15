@@ -26,11 +26,8 @@ print()
 # inplace = True
 print("inplace=True", "pd.options.mode.chained_assignment = 'warn'")
 pd.options.mode.chained_assignment = 'warn'
-
-# df(원본객체)의 1개 행(row)을 삭제
 df.drop('인아', inplace=True)
 print("df", df, sep='\n')
 
-# df(원본객체)의 2개 행(row)을 삭제
 df.drop(['서준', '우현'], axis=0, inplace=True)
 print("\ndf", df, sep='\n')
