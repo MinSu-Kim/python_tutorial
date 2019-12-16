@@ -1,18 +1,13 @@
 import matplotlib.pyplot as plt
+import numpy as np
 
-names = ['group_a', 'group_b', 'group_c']
-values = [1, 10, 100]
+np.random.seed(19680801)
+data = np.random.randn(2, 100)
 
-plt.figure(figsize=(9, 3))
+fig, axs = plt.subplots(2, 2, figsize=(5, 5))
+axs[0, 0].hist(data[0])
+axs[1, 0].scatter(data[0], data[1])
+axs[0, 1].plot(data[0], data[1])
+axs[1, 1].hist2d(data[0], data[1])
 
-plt.subplot(131)
-plt.bar(names, values)
-
-plt.subplot(132)
-plt.scatter(names, values)
-
-plt.subplot(133)
-plt.plot(names, values)
-
-plt.suptitle('Categorical Plotting')
 plt.show()
