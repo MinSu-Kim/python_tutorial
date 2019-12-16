@@ -1,4 +1,4 @@
-from PyQt5.QtWidgets import QApplication, QMainWindow, QPushButton, QHBoxLayout, QVBoxLayout, QWidget
+from PyQt5.QtWidgets import QApplication, QMainWindow, QPushButton, QHBoxLayout, QVBoxLayout, QWidget, QGridLayout
 
 
 class MyApp(QMainWindow):
@@ -30,6 +30,11 @@ class MyApp(QMainWindow):
         widget.setLayout(vbox)
 
         self.setCentralWidget(widget)
+
+        window = QGridLayout()
+        window.addWidget(widget)
+        self.setLayout(window)
+
 
 if __name__ == '__main__':
     app = QApplication([])  # 모든 PyQt5 어플리케이션은 어플리케이션 객체를 생성해야 합

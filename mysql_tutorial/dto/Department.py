@@ -49,7 +49,9 @@ if __name__ == "__main__":
     dept.floor = 20
     print(dept)
 
-    deptList2 = [Department2(), Department2(deptno=1), Department2(deptno=1, deptname='영업'),
+    deptList2 = [Department2(),
+                 Department2(deptno=1),
+                 Department2(deptno=1, deptname='영업'),
                  Department2(deptno=1, deptname='영업', floor=8)]
     for obj in deptList2:
         print(obj)

@@ -106,9 +106,9 @@ class PandasGraph():
         # graph_config()
         matplotlib.rcParams['font.family'] = 'Malgun Gothic'  # '맑은 고딕'으로 설정,
         matplotlib.rcParams['axes.unicode_minus'] = False
-        # self.create_line_graph1()
-        # self.create_line_graph2()
-        # self.create_line_graph3()
+        self.create_line_graph1()
+        self.create_line_graph2()
+        self.create_line_graph3()
         # self.create_dataframe_to_line_graph1()
         # self.create_dataframe_to_line_graph2()
         # self.create_dataframe_to_line_graph3()
@@ -117,7 +117,7 @@ class PandasGraph():
         # self.create_bar()
         # self.create_histo()
         # self.create_pie()
-        self.create_pie2()
+        # self.create_pie2()
         plt.show()
 
 

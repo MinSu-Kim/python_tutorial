@@ -2,10 +2,10 @@ import json
 
 
 class Student(object):
-    def __init__(self, no=1, name="학생", kor=0, eng=0, math=0):
-        self.no = int(no)
-        self.name = name
-        self.score = {'국어': kor, '영어': eng, '수학': math}
+    # def __init__(self, no=1, name="학생", kor=0, eng=0, math=0):
+    #     self.no = int(no)
+    #     self.name = name
+    #     self.score = {'국어': kor, '영어': eng, '수학': math}
 
     def __init__(self, userdict=None):
         self.no = userdict['no']

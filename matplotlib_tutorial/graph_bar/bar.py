@@ -10,7 +10,7 @@ def graph_config(title, width=12):
     # 그래프 설정
     figure = plt.figure(figsize=(width, 5))
     figure.suptitle(title)
-    plt.subplots_adjust(left=0.1, right=0.9, bottom=0.1, top=0.87, wspace=0.1, hspace=0.1)  # 여백지정
+    plt.subplots_adjust(left=0.1, right=0.9, bottom=0.1, top=0.87, wspace=0.3, hspace=0.2)  # 여백지정
 
 
 class BarDraw():
