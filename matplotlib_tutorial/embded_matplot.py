@@ -16,7 +16,7 @@ class MyWindow(QWidget):
 
     def initUI(self):
         self.fig = plt.Figure()
-        self.canvas = FigureCanvas(self.fig)
+        self.canvas = FigureCanvas(self.fig) # figure - canvas 연동
 
         layout = QVBoxLayout()
         layout.addWidget(self.canvas)
@@ -44,7 +44,7 @@ class MyWindow(QWidget):
 
         self.fig.clear()
 
-        ax = self.fig.add_subplot(111)
+        ax = self.fig.add_subplot(111) # fig를 1행 1칸으로 나누어 1칸안에 넣어줍니다
         ax.plot(x, y1, label="sin(x)")
         ax.plot(x, y2, label="cos(x)", linestyle="--")
 
