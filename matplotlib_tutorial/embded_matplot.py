@@ -18,16 +18,14 @@ class MyWindow(QWidget):
         self.fig = plt.Figure()
         self.canvas = FigureCanvas(self.fig) # figure - canvas 연동
 
-        layout = QVBoxLayout()
-        layout.addWidget(self.canvas)
+        self.layout = QVBoxLayout()
+        self.layout.addWidget(self.canvas)
 
         cb = QComboBox()
         cb.addItem('Graph1')
         cb.addItem('Graph2')
         cb.activated[str].connect(self.onComboBoxChanged)
-        layout.addWidget(cb)
-
-        self.layout = layout
+        self.layout.addWidget(cb)
 
         self.onComboBoxChanged(cb.currentText())
 

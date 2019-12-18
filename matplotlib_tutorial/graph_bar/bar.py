@@ -28,9 +28,8 @@ class BarDraw():
 
     def create_barh(self):
         plt.subplot(132)
-        index = np.arange(len(self._member_IDs))
         colors = ['r', 'g', 'b', 'm']
-        plt.barh(index, self._before_ex, color=colors, tick_label=self._member_IDs)
+        plt.barh(self._index, self._before_ex, color=colors, tick_label=self._member_IDs)
         plt.title('가로 막대 차트')
 
     def create_combo_bar(self):
