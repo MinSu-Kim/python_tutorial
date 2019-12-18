@@ -21,9 +21,18 @@ class MyComboBox(QGroupBox):
         push_item = QPushButton('Add')
         push_item.clicked.connect(lambda x: cb.addItem('add'))
 
+        get_cmb_items_btn = QPushButton('Get Items')
+        get_cmb_items_btn.clicked.connect(lambda stat, cmb=cb:self.get_items(stat, cmb))
+
         hbox = QHBoxLayout()
         hbox.addWidget(cb)
         hbox.addWidget(lbl)
         hbox.addWidget(push_item)
+        hbox.addWidget(get_cmb_items_btn)
 
         self.setLayout(hbox)
+
+    def get_items(self, stat, cmb):
+        aaa = cmb.findText('Option3')
+        print(type(aaa), aaa)
+
