@@ -28,7 +28,7 @@ class LineDetail():
 
     def __draw_line_Label(self):
         # plt.subplot(self.row, self.column, 1)
-        plt.subplot(231)            # 행열번호
+        plt.subplot(231)  # 행열번호
         plt.plot(self.x, self.y)
         plt.xlabel('X-axis')
         plt.ylabel('Y-axis')
@@ -47,7 +47,7 @@ class LineDetail():
     def __draw_line_Lenend_which(self):
         plt.subplot(self.row, self.column, 3)
         plt.plot(self.x1, self.y1, '>--r', self.x1, self.y2, 's-g', self.x1, self.y3, 'd:b', self.x1, self.y4, '-.Xc')
-        plt.legend(['data1', 'data2', 'data3', 'data4'], loc = 'lower right')
+        plt.legend(['data1', 'data2', 'data3', 'data4'], loc='lower right')
 
     def __draw_line_full(self):
         plt.subplot(self.row, self.column, 4)
@@ -62,7 +62,7 @@ class LineDetail():
         # 기본폰트 확인 ['sans-serif']
         print('matplotlib.rcParams[\'font.family\']\n', matplotlib.rcParams['font.family'])
         # 사용가능한 폰트 확인
-        matplotlib.rcParams['font.family'] = 'Malgun Gothic'   # '맑은 고딕'으로 설정,
+        matplotlib.rcParams['font.family'] = 'Malgun Gothic'  # '맑은 고딕'으로 설정,
         matplotlib.rcParams['axes.unicode_minus'] = False
 
         plt.subplot(self.row, self.column, 5)
@@ -84,7 +84,7 @@ class LineDetail():
     def draw_line(self):
         # 상하좌우 값들은 Figure객체 안에서 여백의 크기를, Figure크기에 대한 비율.
         # Width Space와 Height Space 값은 Axes객체 하나 크기의 비율.
-        plt.subplots_adjust(left=0.1, right=0.95, bottom=0.1, top=0.87, wspace=0.25, hspace=0.3)    # 여백지정
+        plt.subplots_adjust(left=0.1, right=0.95, bottom=0.1, top=0.87, wspace=0.25, hspace=0.3)  # 여백지정
         self.__draw_line_Label()
         self.__draw_line_Title()
         self.__draw_line_Grid()

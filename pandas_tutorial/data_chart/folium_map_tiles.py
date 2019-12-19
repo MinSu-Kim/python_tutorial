@@ -1,6 +1,3 @@
-# -*- coding: utf-8 -*-
-
-# 라이브러리 불러오기
 import folium
 
 # 서울 지도 만들기
