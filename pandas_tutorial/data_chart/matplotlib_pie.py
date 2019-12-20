@@ -1,15 +1,8 @@
-# -*- coding: utf-8 -*-
-
-# 라이브러리 불러오기
 import pandas as pd
 import matplotlib.pyplot as plt
 
-# read_csv() 함수로 df 생성
 df = pd.read_csv('./auto-mpg.csv', header=None)
-
 plt.style.use('default')   # 스타일 서식 지정
-
-# 열 이름을 지정
 df.columns = ['mpg','cylinders','displacement','horsepower','weight',
               'acceleration','model year','origin','name']
 

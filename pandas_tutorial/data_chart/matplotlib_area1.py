@@ -7,7 +7,6 @@ font_path = "./malgun.ttf"   #폰트파일의 위치
 font_name = font_manager.FontProperties(fname=font_path).get_name()
 rc('font', family=font_name)
 
-# Excel 데이터를 데이터프레임 변환 
 df = pd.read_excel('시도별 전출입 인구수.xlsx', fillna=0, header=0)
 
 # 전출지별에서 누락값(NaN)을 앞 데이터로 채움 (엑셀 양식 병합 부분)
@@ -25,6 +24,8 @@ col_years = list(map(str, range(1970, 2018)))
 df_4 = df_seoul.loc[['충청남도','경상북도', '강원도', '전라남도'], col_years]
 df_4 = df_4.transpose()
 
+print(df_seoul.head(), '\n', df_4.head(), '\n')
+
 # 스타일 서식 지정
 plt.style.use('ggplot') 
 
@@ -32,7 +33,7 @@ plt.style.use('ggplot')
 df_4.index = df_4.index.map(int)
 
 # 면적 그래프 그리기
-df_4.plot(kind='area', stacked=False, alpha=0.2, figsize=(20, 10))
+df_4.plot(kind='area', stacked=True, alpha=0.2, figsize=(20, 10))
 
 plt.title('서울 -> 타시도 인구 이동', size=30)
 plt.ylabel('이동 인구 수', size=20)
