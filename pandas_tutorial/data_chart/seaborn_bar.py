@@ -1,13 +1,8 @@
-# -*- coding: utf-8 -*-
-
-# 라이브러리 불러오기
 import matplotlib.pyplot as plt
 import seaborn as sns
  
-# Seaborn 제공 데이터셋 가져오기
+
 titanic = sns.load_dataset('titanic')
- 
-# 스타일 테마 설정 (5가지: darkgrid, whitegrid, dark, white, ticks)
 sns.set_style('whitegrid')
 
 # 그래프 객체 생성 (figure에 3개의 서브 플롯을 생성)
