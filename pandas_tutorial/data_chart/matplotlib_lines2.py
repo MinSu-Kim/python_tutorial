@@ -1,6 +1,3 @@
-# -*- coding: utf-8 -*-
-
-# 라이브러리 불러오기
 import pandas as pd
 import matplotlib.pyplot as plt
 
@@ -29,23 +26,30 @@ sr_one = df_seoul.loc['경기도']
 # 스타일 서식 지정
 plt.style.use('ggplot') 
 
-# 그래프 객체 생성 (figure에 2개의 서브 플롯을 생성)
-fig = plt.figure(figsize=(10, 10))   
-ax1 = fig.add_subplot(2, 1, 1)
-ax2 = fig.add_subplot(2, 1, 2)
+# 그래프 객체 생성 (figure에 1개의 서브 플롯을 생성)
+fig = plt.figure(figsize=(20, 5))   
+ax = fig.add_subplot(1, 1, 1)
 
 # axe 객체에 plot 함수로 그래프 출력
-ax1.plot(sr_one, 'o', markersize=10)
-ax2.plot(sr_one, marker='o', markerfacecolor='green', markersize=10, 
-         color='olive', linewidth=2, label='서울 -> 경기')
-ax2.legend(loc='best')
+ax.plot(sr_one, marker='o', markerfacecolor='orange', markersize=10, 
+        color='olive', linewidth=2, label='서울 -> 경기')
+ax.legend(loc='best')
 
 #y축 범위 지정 (최소값, 최대값)
-ax1.set_ylim(50000, 800000)
-ax2.set_ylim(50000, 800000)
+ax.set_ylim(50000, 800000)
+
+# 차트 제목 추가
+ax.set_title('서울 -> 경기 인구 이동', size=20)
+
+# 축이름 추가
+ax.set_xlabel('기간', size=12)
+ax.set_ylabel('이동 인구수', size = 12)
 
 # 축 눈금 라벨 지정 및 75도 회전
-ax1.set_xticklabels(sr_one.index, rotation=75)
-ax2.set_xticklabels(sr_one.index, rotation=75)
+ax.set_xticklabels(sr_one.index, rotation=75)
+
+# 축 눈금 라벨 크기
+ax.tick_params(axis="x", labelsize=10)
+ax.tick_params(axis="y", labelsize=10)
 
 plt.show()  # 변경사항 저장하고 그래프 출력

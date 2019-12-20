@@ -1,11 +1,15 @@
-# -*- coding: utf-8 -*-
-
-# 라이브러리 불러오기
 import pandas as pd
 import matplotlib.pyplot as plt
+from matplotlib import font_manager, rc
+
+# 디스플레이 설정 변경
+pd.set_option('display.max_columns', 10)  # 출력할 최대 열의 개수
+pd.set_option('display.max_colwidth', 20)  # 출력할 열의 너비
+pd.set_option('display.unicode.east_asian_width', True)  # 유니코드 사용 너비 조정
+pd.set_option('display.width', 600)  # 콘솔 출력 너비
 
 # matplotlib 한글 폰트 오류 문제 해결
-from matplotlib import font_manager, rc
+
 font_path = "./malgun.ttf"   #폰트파일의 위치
 font_name = font_manager.FontProperties(fname=font_path).get_name()
 rc('font', family=font_name)
@@ -65,15 +69,15 @@ plt.annotate('',
 
 # 주석 표시 - 텍스트
 plt.annotate('인구이동 증가(1970-1995)',  #텍스트 입력
-             xy=(10, 550000),            #텍스트 위치 기준점
-             rotation=25,                #텍스트 회전각도
+             xy=(10, 383800),            #텍스트 위치 기준점
+             rotation=31,                #텍스트 회전각도
              va='baseline',              #텍스트 상하 정렬
              ha='center',                #텍스트 좌우 정렬
              fontsize=15,                #텍스트 크기
              )
 
 plt.annotate('인구이동 감소(1995-2017)',  #텍스트 입력
-             xy=(40, 560000),            #텍스트 위치 기준점
+             xy=(39, 520000),            #텍스트 위치 기준점
              rotation=-11,               #텍스트 회전각도
              va='baseline',              #텍스트 상하 정렬
              ha='center',                #텍스트 좌우 정렬

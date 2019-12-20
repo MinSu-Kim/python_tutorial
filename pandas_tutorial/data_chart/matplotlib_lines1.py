@@ -1,6 +1,3 @@
-# -*- coding: utf-8 -*-
-
-# 라이브러리 불러오기
 import pandas as pd
 import matplotlib.pyplot as plt
 
@@ -26,14 +23,35 @@ df_seoul.set_index('전입지', inplace=True)
 # 서울에서 경기도로 이동한 인구 데이터 값만 선택
 sr_one = df_seoul.loc['경기도']
 
-# x, y축 데이터를 plot 함수에 입력
-plt.plot(sr_one.index, sr_one.values)
+# 스타일 서식 지정
+plt.style.use('ggplot') 
 
-# 차트 제목 추가
-plt.title('서울 -> 경기 인구 이동')
+# 그래프 객체 생성 (figure에 2개의 서브 플롯을 생성)
+fig = plt.figure(figsize=(16, 14))
+fig.subplots_adjust(left=0.2, right=0.8, bottom=0.2, top=0.87, wspace=0.3, hspace=0.5)
+ax1 = fig.add_subplot(2, 1, 1)
+ax2 = fig.add_subplot(2, 1, 2)
 
-# 축이름 추가
-plt.xlabel('기간')
-plt.ylabel('이동 인구수')
+# axe 객체에 plot 함수로 그래프 출력
+ax1.plot(sr_one, 'o', markersize=10)
+ax2.plot(sr_one, marker='o', markerfacecolor='green', markersize=10, 
+         color='olive', linewidth=2, label='서울 -> 경기')
+ax2.legend(loc='best')
+
+#y축 범위 지정 (최소값, 최대값)
+ax1.set_ylim(50000, 800000)
+ax2.set_ylim(50000, 800000)
+
+# 축 눈금 라벨 지정 및 75도 회전
+ax1.set_xticklabels(sr_one.index, rotation=75)
+ax2.set_xticklabels(sr_one.index, rotation=75)
+
+ax1.set_xlabel('기간')
+ax1.set_ylabel('이동 인구수')
+ax1.set_title('서울 -> 경기 인구 이동')
+
+ax2.set_xlabel('기간')
+ax2.set_ylabel('이동 인구수')
+ax2.set_title('서울 -> 경기 인구 이동')
 
 plt.show()  # 변경사항 저장하고 그래프 출력
