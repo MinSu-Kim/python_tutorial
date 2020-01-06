@@ -75,7 +75,8 @@ def html_write():
           </body>
         </html>
         """
-    html_file("D:/workspace_python/python_tutorial/web_scraping/HTML_example_my_site.html", html)
+    # html_file("D:/workspace_python/python_tutorial/web_scraping/HTML_example_my_site.html", html)
+    html_file("HTML_example_my_site_linux.html", html)
 
 
 def html_write2():
@@ -93,7 +94,8 @@ def html_write2():
       </body>
     </html>
     """
-    html_file("D:/workspace_python/python_tutorial/web_scraping/br_example_constitution.html", html)
+    # html_file("D:/workspace_python/python_tutorial/web_scraping/br_example_constitution.html", html)
+    html_file("br_example_constitution_linux.html", html)
 
 
 def html_file(file_path, message):
@@ -103,12 +105,14 @@ def html_file(file_path, message):
 
 
 def web3():
-    file_exist = os.path.isfile("D:/workspace_python/python_tutorial/web_scraping/HTML_example_my_site.html")
+    # file_exist = os.path.isfile("D:/workspace_python/python_tutorial/web_scraping/HTML_example_my_site.html")
+    file_exist = os.path.isfile("HTML_example_my_site_linux.html")
     if file_exist is False:
         html_write()
         print("file write")
 
-    f = open("D:/workspace_python/python_tutorial/web_scraping/HTML_example_my_site.html", encoding='utf8')
+    # f = open("D:/workspace_python/python_tutorial/web_scraping/HTML_example_my_site.html", encoding='utf8')
+    f = open("HTML_example_my_site_linux.html", encoding='utf8')
     html3 = f.read()
     f.close()
 
@@ -118,12 +122,14 @@ def web3():
 
 
 def web4():
-    file_exist = os.path.isfile("D:/workspace_python/python_tutorial/web_scraping/br_example_constitution.html")
+    # file_exist = os.path.isfile("D:/workspace_python/python_tutorial/web_scraping/br_example_constitution.html")
+    file_exist = os.path.isfile("br_example_constitution_linux.html")
     if file_exist is False:
         html_write2()
         print("file write")
 
-    f = open("D:/workspace_python/python_tutorial/web_scraping/br_example_constitution.html", encoding='utf8')
+    # f = open("D:/workspace_python/python_tutorial/web_scraping/br_example_constitution.html", encoding='utf8')
+    f = open("br_example_constitution_linux.html", encoding='utf8')
     html3 = f.read()
     f.close()
 
@@ -176,6 +182,7 @@ if __name__ == "__main__":
     # print(html[0:100])
     # beautiful_soup()
     #
+    # html_write()
     # web()
     # web2()
     # web3()

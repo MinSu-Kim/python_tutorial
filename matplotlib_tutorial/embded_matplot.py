@@ -22,7 +22,8 @@ class MyWindow(QWidget):
         self.layout.addWidget(self.canvas)
 
         cb = QComboBox()
-        cb.addItem('Graph1')
+        cb.addItem('Graph1')# matplotlib 한글 폰트 오류 문제 해결
+
         cb.addItem('Graph2')
         cb.activated[str].connect(self.onComboBoxChanged)
         self.layout.addWidget(cb)

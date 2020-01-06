@@ -1,13 +1,11 @@
 import pandas as pd
 import matplotlib.pyplot as plt
+import matplotlib
 
 # matplotlib 한글 폰트 오류 문제 해결
-from matplotlib import font_manager, rc
-
-font_path = "./malgun.ttf"  # 폰트파일의 위치
-font_name = font_manager.FontProperties(fname=font_path).get_name()
-rc('font', family=font_name)
-
+# 한글 설정
+matplotlib.rcParams['font.family'] = 'NanumGothicCoding'  # '맑은 고딕'으로 설정,
+matplotlib.rcParams['axes.unicode_minus'] = False
 # Excel 데이터를 데이터프레임 변환 
 df = pd.read_excel('시도별 전출입 인구수.xlsx', fillna=0, header=0)
 
@@ -32,9 +30,8 @@ plt.figure(figsize=(14, 5))
 
 # x축 눈금 라벨 회전하기
 plt.xticks(size=10, rotation='vertical')
-
-# x, y축 데이터를 plot 함수에 입력 
-plt.plot(sr_one.index, sr_one.values, marker='o', markersize=10)  # 마커 표시 추가
+# x, y축 데이터를 plot 함수에 입력
+plt.plot(sr_one.index, sr_one.values, marker='s', markersize=10)  # 마커 표시 추가
 
 plt.title('서울 -> 경기 인구 이동', size=30)  # 차트 제목
 plt.xlabel('기간', size=20)  # x축 이름

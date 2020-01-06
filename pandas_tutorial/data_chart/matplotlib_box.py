@@ -1,11 +1,11 @@
 import pandas as pd
 import matplotlib.pyplot as plt
+import matplotlib
 
-from matplotlib import font_manager, rc
-
-font_path = "./malgun.ttf"  # 폰트파일의 위치
-font_name = font_manager.FontProperties(fname=font_path).get_name()
-rc('font', family=font_name)
+# matplotlib 한글 폰트 오류 문제 해결
+# 한글 설정
+matplotlib.rcParams['font.family'] = 'NanumGothicCoding'  # '맑은 고딕'으로 설정,
+matplotlib.rcParams['axes.unicode_minus'] = False
 
 plt.style.use('seaborn-poster')  # 스타일 서식 지정
 plt.rcParams['axes.unicode_minus'] = False  # 마이너스 부호 출력 설정
