@@ -16,6 +16,11 @@ print('df1', '\n', df1, '\n')
 print('df2', '\n', df2, '\n')
 
 print("# 2개의 데이터프레임을 위 아래 행 방향으로 이어 붙이듯 연결하기")
+result0 = pd.concat([df1, df2], sort=False)
+print(result0, '\n')
+
+
+print("# 2개의 데이터프레임을 위 아래 행 방향으로 이어 붙이듯 연결하기")
 result1 = pd.concat([df1, df2], sort=True)
 print(result1, '\n')
 

@@ -33,3 +33,5 @@ print()
 print("# 데이터프레임의 총 NaN 개수 - 데이터프레임 전달하면 값을 반환")
 result_value = df.pipe(totoal_number_missing)
 print(result_value, type(result_value), sep='\n')
+
+print("df.describe()", df.describe(), sep='\n')
