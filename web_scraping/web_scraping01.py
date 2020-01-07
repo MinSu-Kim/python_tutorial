@@ -118,6 +118,8 @@ def web3():
     soup3 = BeautifulSoup(html3, 'lxml')
     print('soup3.select(\'a\') {}'.format(soup3.select('a')))
     print('soup3.select(\'a.portal\') {}'.format(soup3.select('a.portal')))
+    print(soup3.select('html > body > a'))
+    print(soup3.select('html > body > a.portal'))
 
 
 def web4():
@@ -181,7 +183,7 @@ if __name__ == "__main__":
     # beautiful_soup()
     #
     # html_write()
-    web()
-    web2()
-    web3()
+    # web()
+    # web2()
+    # web3()
     web4()
