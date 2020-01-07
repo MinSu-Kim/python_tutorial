@@ -4,7 +4,7 @@ import matplotlib
 import matplotlib.pyplot as plt
 
 # 한글 설정
-matplotlib.rcParams['font.family'] = 'Malgun Gothic'  # '맑은 고딕'으로 설정,
+matplotlib.rcParams['font.family'] = 'NanumGothicCoding'  # '맑은 고딕'으로 설정,
 matplotlib.rcParams['axes.unicode_minus'] = False
 
 # 디스플레이 설정 변경
@@ -16,7 +16,11 @@ pd.set_option('display.width', 600)  # 콘솔 출력 너비
 df_2015_2019 = pd.read_csv('전국 전체 분양가격(2015_2019).csv', encoding='utf-8')
 print(df_2015_2019.shape, '\n', df_2015_2019.head(), '\n', df_2015_2019.tail())
 
-df_2013_2015 = pd.read_csv('전국 평균 분양가격(2015년 09월까지).csv', encoding='euc-kr', skiprows=1, header=0, engine='python')
+df_2013_2015 = pd.read_csv('전국 평균 분양가격(2015년 09월까지).csv',
+                           encoding='euc-kr',
+                           skiprows=1,
+                           header=0, engine='python')
+
 print(df_2013_2015.shape, '\n', df_2013_2015.head(), '\n', df_2013_2015.tail())
 
 print(df_2013_2015.columns)
@@ -47,7 +51,6 @@ print(df_2013_2015)
 df_2013_2015 = df_2013_2015.drop(df_2013_2015.index[[0, 1, 2, 10, 12, 22]])
 print(df_2013_2015)
 
-#
 df_2013_2015.loc[4, '구분'] = ''
 df_2013_2015.loc[14, '구분'] = ''
 print(df_2013_2015)
@@ -63,41 +66,63 @@ print(df_2013_2015)
 
 print(df_2013_2015.drop(['구분', '시군구'], axis=1))
 
-melt_columns = df_2013_2015.columns.copy()
-print(melt_columns)
 
+
+# 여기까지
+melt_columns = df_2013_2015.columns.copy()
+print(melt_columns, type(melt_columns))
+
+
+# df_2013_2015 = pd.melt(df_2013_2015, id_vars=['지역명'],
+#                        value_vars=['2013 12', '2014 1', '2014 2', '2014 3', '2014 4',
+#                                    '2014 5', '2014 6', '2014 7', '2014 8', '2014 9', '2014 10', '2014 11',
+#                                    '2014 12', '2015 1', '2015 2', '2015 3', '2015 4', '2015 5', '2015 6',
+#                                    '2015 7', '2015 8', '2015 9'])
+
+# index를 list로 변경
+melt_columns = melt_columns[2:len(melt_columns)-1].tolist()
 df_2013_2015 = pd.melt(df_2013_2015, id_vars=['지역명'],
-                       value_vars=['2013 12', '2014 1', '2014 2', '2014 3', '2014 4',
-                                   '2014 5', '2014 6', '2014 7', '2014 8', '2014 9', '2014 10', '2014 11',
-                                   '2014 12', '2015 1', '2015 2', '2015 3', '2015 4', '2015 5', '2015 6',
-                                   '2015 7', '2015 8', '2015 9'])
+                       value_vars=melt_columns)
+
 print(df_2013_2015.head())
 
+# 지역명, 0, value => '지역명', '기간', '분양가'로 열이름 변경
 df_2013_2015.columns = ['지역명', '기간', '분양가']
 print(df_2013_2015.head())
 
+# 기간을 연도와 월로 분리하여  추가
 df_2013_2015['연도'] = df_2013_2015['기간'].apply(lambda year_month: year_month.split(' ')[0])
 df_2013_2015['월'] = df_2013_2015['기간'].apply(lambda year_month: year_month.split(' ')[1])
 
 print(df_2013_2015.head())
 print(df_2015_2019.head())
 
+print(df_2015_2019.info(), '\n\n')
+
 print(df_2013_2015.info(), '\n\n')
 df_2013_2015.연도 = df_2013_2015.연도.astype(int)
 df_2013_2015.월 = df_2013_2015.월.astype(int)
 print(df_2013_2015.info(), '\n\n')
 
-plt.figure(figsize=(14, 6))
-plt.subplot(121)
+plt.figure(figsize=(18, 10))
+plt.subplot(221)
 sns.boxplot(data=df_2013_2015, x='지역명', y='분양가', hue='연도')
 
-plt.subplot(122)
+plt.subplot(222)
 sns.barplot(data=df_2013_2015, x='지역명', y='분양가', hue='연도')
+
+plt.subplot(223)
+sns.boxplot(data=df_2015_2019, x='지역명', y='평당분양가격', hue='연도')
+
+plt.subplot(224)
+sns.barplot(data=df_2015_2019, x='지역명', y='평당분양가격', hue='연도')
+plt.suptitle("2013-2015, 2015-2019년 지역별 평당분양가격", size=20)
 plt.show()
 
-print(df_2013_2015.columns, '\n\n', df_2015_2019.columns)
 
 # 컬럼명 맞추기
+print(df_2013_2015.columns, '\n\n', df_2015_2019.columns)
+
 df_2013_2015_prepare = df_2013_2015[['지역명', '연도', '월', '분양가']]
 total_columns = ['지역명', '연도', '월', '평당분양가격']
 df_2013_2015_prepare.columns = total_columns
@@ -107,6 +132,7 @@ df_2015_2019_prepare = df_2015_2019[['지역명', '연도', '월', '평당분양
 print(df_2013_2015_prepare.head(), '\n\n', df_2015_2019_prepare.head())
 print(df_2013_2015_prepare.shape, '\n\n', df_2015_2019_prepare.shape)
 
+# 결합하기
 df_2013_2019 = pd.concat([df_2013_2015_prepare, df_2015_2019_prepare])
 print("total : ", df_2013_2019.shape)
 
