@@ -27,7 +27,7 @@ class PieDraw():
 
     def create_graph(self):
         # 한글 설정
-        matplotlib.rcParams['font.family'] = 'Malgun Gothic'  # '맑은 고딕'으로 설정,
+        matplotlib.rcParams['font.family'] = 'NanumGothicCoding'  # '맑은 고딕'으로 설정,
         matplotlib.rcParams['axes.unicode_minus'] = False
         # 그래프 설정
         figure = plt.figure(figsize=(8, 8))

@@ -14,7 +14,7 @@ print(tdf_ns.head())
 print('\n')
 
 # 한글 설정
-matplotlib.rcParams['font.family'] = 'Malgun Gothic'  # '맑은 고딕'으로 설정,
+matplotlib.rcParams['font.family'] = 'NanumGothicCoding'  # '맑은 고딕'으로 설정,
 matplotlib.rcParams['axes.unicode_minus'] = False
 
 tdf_ns.plot(kind='bar', title="남북한 발전 전력량")

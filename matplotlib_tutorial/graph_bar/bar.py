@@ -5,8 +5,9 @@ import numpy as np
 
 def graph_config(title, width=12):
     # 한글 설정
-    matplotlib.rcParams['font.family'] = 'Malgun Gothic'  # '맑은 고딕'으로 설정,
+    matplotlib.rcParams['font.family'] = 'NanumGothicCoding'  # '맑은 고딕'으로 설정,
     matplotlib.rcParams['axes.unicode_minus'] = False
+
     # 그래프 설정
     figure = plt.figure(figsize=(width, 5))
     figure.suptitle(title)

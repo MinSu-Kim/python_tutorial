@@ -3,12 +3,12 @@
 # 라이브러리 불러오기
 import pandas as pd
 import matplotlib.pyplot as plt
+import matplotlib
 
 # matplotlib 한글 폰트 오류 문제 해결
-from matplotlib import font_manager, rc
-font_path = "./malgun.ttf"   #폰트파일의 위치
-font_name = font_manager.FontProperties(fname=font_path).get_name()
-rc('font', family=font_name)
+# 한글 설정
+matplotlib.rcParams['font.family'] = 'NanumGothicCoding'  # '맑은 고딕'으로 설정,
+matplotlib.rcParams['axes.unicode_minus'] = False
 
 # Excel 데이터를 데이터프레임 변환 
 df = pd.read_excel('시도별 전출입 인구수.xlsx', fillna=0, header=0)
@@ -34,14 +34,12 @@ plt.style.use('ggplot')
 # 데이터프레임의 인덱스를 정수형으로 변경 (x축 눈금 라벨 표시)
 df_4.index = df_4.index.map(int)
 
-# 면적 그래프 axe 객체 생성
-ax = df_4.plot(kind='area', stacked=True, alpha=0.2, figsize=(20, 10))
-print(type(ax))
+# 면적 그래프 그리기
+df_4.plot(kind='area', stacked=True, alpha=0.2, figsize=(20, 10))
 
-# axe 객체 설정 변경
-ax.set_title('서울 -> 타시도 인구 이동', size=30, color='brown', weight='bold')
-ax.set_ylabel('이동 인구 수', size=20, color='blue')
-ax.set_xlabel('기간', size=20, color='blue')
-ax.legend(loc='best', fontsize=15)
+plt.title('서울 -> 타시도 인구 이동', size=30)
+plt.ylabel('이동 인구 수', size=20)
+plt.xlabel('기간', size=20)
+plt.legend(loc='best', fontsize=15)
 
 plt.show()

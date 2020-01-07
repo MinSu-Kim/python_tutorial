@@ -1,19 +1,13 @@
-# -*- coding: utf-8 -*-
-
-# 라이브러리 불러오기
 import pandas as pd
 import matplotlib.pyplot as plt
+import matplotlib
 
 # matplotlib 한글 폰트 오류 문제 해결
-from matplotlib import font_manager, rc
-font_path = "./malgun.ttf"   #폰트파일의 위치
-font_name = font_manager.FontProperties(fname=font_path).get_name()
-rc('font', family=font_name)
-
-# Excel 데이터를 데이터프레임 변환 
+# 한글 설정
+matplotlib.rcParams['font.family'] = 'NanumGothicCoding'  # '맑은 고딕'으로 설정,
+matplotlib.rcParams['axes.unicode_minus'] = False
 df = pd.read_excel('시도별 전출입 인구수.xlsx', fillna=0, header=0)
 
-# 전출지별에서 누락값(NaN)을 앞 데이터로 채움 (엑셀 양식 병합 부분)
 df = df.fillna(method='ffill')
 
 # 서울에서 다른 지역으로 이동한 데이터만 추출하여 정리
@@ -35,8 +29,7 @@ plt.style.use('ggplot')
 df_4.index = df_4.index.map(int)
 
 # 막대 그래프 그리기
-df_4.plot(kind='bar', figsize=(20, 10), width=0.7,
-          color=['orange', 'green', 'skyblue', 'blue'])
+df_4.plot(kind='bar', figsize=(20, 10), width=0.7, color=['orange', 'green', 'skyblue', 'blue'])
 
 plt.title('서울 -> 타시도 인구 이동', size=30)
 plt.ylabel('이동 인구 수', size=20)

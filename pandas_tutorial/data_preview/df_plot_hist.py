@@ -9,7 +9,7 @@ df_ns.index = ['South','North']        # 행 인덱스 변경
 df_ns.columns = df_ns.columns.map(int) # 열 이름의 자료형을 정수형으로 변경
 
 # 한글 설정
-matplotlib.rcParams['font.family'] = 'Malgun Gothic'  # '맑은 고딕'으로 설정,
+matplotlib.rcParams['font.family'] = 'NanumGothicCoding'  # '맑은 고딕'으로 설정,
 matplotlib.rcParams['axes.unicode_minus'] = False
 
 # 행, 열 전치하여 히스토그램 그리기

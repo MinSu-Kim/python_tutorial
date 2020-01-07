@@ -13,6 +13,9 @@ df.columns = ['mpg', 'cylinders', 'displacement', 'horsepower', 'weight',
               'acceleration', 'model year', 'origin', 'name']
 print(df.head(3), '\n')
 
+
+
+
 print("# mpg(mile per gallon)를 kpl(kilometer per liter)로 변환 (mpg_to_kpl = 0.425)")
 mpg_to_kpl = 1.60934 / 3.78541
 

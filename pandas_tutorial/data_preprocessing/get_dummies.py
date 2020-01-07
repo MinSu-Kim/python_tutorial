@@ -12,14 +12,21 @@ pd.set_option('display.max_colwidth', int(df['name'].apply(len).max()))  # 출�
 pd.set_option('display.unicode.east_asian_width', True)  # 유니코드 사용 너비 조정
 pd.set_option('display.width', 600)  # 콘솔 출력 너비
 
-print('df.head()', '\n', df.head(), '\n')
+print('df.head()', '\n', df.head(), '\n', df.shape, '\n')
 # horsepower 열의 누락 데이터('?') 삭제하고 실수형으로 변환
+
+
 df['horsepower'].replace('?', np.nan, inplace=True)  # '?'을 np.nan으로 변경
+
 df.dropna(subset=['horsepower'], axis=0, inplace=True)  # 누락데이터 행을 삭제
 df['horsepower'] = df['horsepower'].astype('float')  # 문자열을 실수형으로 변환
+print('df.head()', '\n', df.head(), '\n', df.shape, '\n')
 
 print("# np.histogram 으로 3개의 bin으로 나누는 경계 값의 리스트 구하기")
 count, bin_dividers = np.histogram(df['horsepower'], bins=3)
+
+print("count, bin_dividers")
+print(count, bin_dividers)
 
 # 3개의 bin에 이름 지정
 bin_names = ['저출력', '보통출력', '고출력']
@@ -35,3 +42,4 @@ horsepower_dummies = pd.get_dummies(df['hp_bin'])
 print(horsepower_dummies.head(15), '\n')
 
 print("df[['horsepower', 'hp_bin']].head(15)", '\n', df[['horsepower', 'hp_bin']].head(15), '\n')
+print(df)

@@ -10,7 +10,7 @@ df.columns = ['mpg', 'cylinders', 'displacement', 'horsepower', 'weight',
               'acceleration', 'model year', 'origin', 'name']
 
 # 한글 설정
-matplotlib.rcParams['font.family'] = 'Malgun Gothic'  # '맑은 고딕'으로 설정,
+matplotlib.rcParams['font.family'] = 'NanumGothicCoding'  # '맑은 고딕'으로 설정,
 matplotlib.rcParams['axes.unicode_minus'] = False
 
 # 2개의 열을 선택하여 산점도 그리기

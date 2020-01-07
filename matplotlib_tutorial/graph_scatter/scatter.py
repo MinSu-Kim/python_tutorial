@@ -8,7 +8,7 @@ class ScatterDraw():
         self.__height = [165, 177, 160, 180, 185, 155, 172]  # 키 데이터
         self.__weight = [62, 67, 55, 74, 90, 43, 64]  # 몸무게 데이터
         # 한글 설정
-        matplotlib.rcParams['font.family'] = 'Malgun Gothic'  # '맑은 고딕'으로 설정,
+        matplotlib.rcParams['font.family'] = 'NanumGothicCoding'  # '맑은 고딕'으로 설정,
         matplotlib.rcParams['axes.unicode_minus'] = False
         # 그래프 설정
         figure = plt.figure(figsize=(14, 8))

@@ -33,3 +33,10 @@ print(age_zscore.loc[[1, 9, 0]], '\n')     # 1, 2, 3 그룹의 첫 데이터 확
 print(len(age_zscore), '\n')              # transform 메소드 반환 값의 길이
 print(age_zscore.loc[0:9], '\n')          # transform 메소드 반환 값 출력 (첫 10개)
 print(type(age_zscore))             # transform 메소드 반환 객체의 자료형
+
+print("# transform() 메소드를 이용하여 age 열의 데이터를 z-score로 변환")
+age_zscore2 = grouped.transform(z_score)
+print(age_zscore2.loc[[1, 9, 0]], '\n')     # 1, 2, 3 그룹의 첫 데이터 확인 (변환 결과)
+print(len(age_zscore2), '\n')              # transform 메소드 반환 값의 길이
+print(age_zscore2.loc[0:9], '\n')          # transform 메소드 반환 값 출력 (첫 10개)
+print(type(age_zscore2))             # transform 메소드 반환 객체의 자료형

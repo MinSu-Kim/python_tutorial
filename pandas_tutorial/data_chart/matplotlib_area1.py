@@ -1,16 +1,11 @@
-# -*- coding: utf-8 -*-
-
-# 라이브러리 불러오기
 import pandas as pd
 import matplotlib.pyplot as plt
+import matplotlib
 
 # matplotlib 한글 폰트 오류 문제 해결
-from matplotlib import font_manager, rc
-font_path = "./malgun.ttf"   #폰트파일의 위치
-font_name = font_manager.FontProperties(fname=font_path).get_name()
-rc('font', family=font_name)
-
-# Excel 데이터를 데이터프레임 변환 
+# 한글 설정
+matplotlib.rcParams['font.family'] = 'NanumGothicCoding'  # '맑은 고딕'으로 설정,
+matplotlib.rcParams['axes.unicode_minus'] = False
 df = pd.read_excel('시도별 전출입 인구수.xlsx', fillna=0, header=0)
 
 # 전출지별에서 누락값(NaN)을 앞 데이터로 채움 (엑셀 양식 병합 부분)
@@ -27,6 +22,8 @@ df_seoul.set_index('전입지', inplace=True)
 col_years = list(map(str, range(1970, 2018)))
 df_4 = df_seoul.loc[['충청남도','경상북도', '강원도', '전라남도'], col_years]
 df_4 = df_4.transpose()
+
+print(df_seoul.head(), '\n', df_4.head(), '\n')
 
 # 스타일 서식 지정
 plt.style.use('ggplot') 

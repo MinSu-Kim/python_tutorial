@@ -1,5 +1,6 @@
 import pandas as pd
 import matplotlib.pyplot as plt
+import matplotlib
 
 df = pd.read_excel('시도별 전출입 인구수.xlsx', fillna=0, header=0)
 
@@ -9,12 +10,9 @@ pd.set_option('display.max_colwidth', 20)  # 출력할 열의 너비
 pd.set_option('display.unicode.east_asian_width', True)  # 유니코드 사용 너비 조정
 pd.set_option('display.width', 600)  # 콘솔 출력 너비
 
-# matplotlib 한글 폰트 오류 문제 해결
-from matplotlib import font_manager, rc
-font_path = "./malgun.ttf"   #폰트파일의 위치
-font_name = font_manager.FontProperties(fname=font_path).get_name()
-rc('font', family=font_name)
-
+# 한글 설정
+matplotlib.rcParams['font.family'] = 'NanumGothicCoding'  # '맑은 고딕'으로 설정,
+matplotlib.rcParams['axes.unicode_minus'] = False
 print(df.head())
 
 # 누락값(NaN)을 앞 데이터로 채움 (엑셀 양식 병합 부분)
