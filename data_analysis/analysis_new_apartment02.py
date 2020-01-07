@@ -4,7 +4,14 @@ import matplotlib
 import matplotlib.pyplot as plt
 
 # 한글 설정
-matplotlib.rcParams['font.family'] = 'NanumGothicCoding'  # '맑은 고딕'으로 설정,
+import platform
+print(platform.system())
+
+if platform.system() == 'Windows':
+    matplotlib.rcParams['font.family'] = 'Malgun Gothic'  # '맑은 고딕'으로 설정
+else:
+    matplotlib.rcParams['font.family'] = 'NanumGothicCoding'  # '맑은 고딕'으로 설정,
+
 matplotlib.rcParams['axes.unicode_minus'] = False
 
 # 디스플레이 설정 변경
