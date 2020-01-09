@@ -8,7 +8,7 @@ url = "https://www.alexa.com/topsites/countries/KR"
 html_website_ranking = requests.get(url).text
 soup_website_ranking = BeautifulSoup(html_website_ranking, "lxml")
 
-# p 태그의 요소 안에서 a 태그의 요소를 찾음
+# p 태그의 요소 안에서 a 태그의 요소를 찾음 후손선택자
 website_ranking = soup_website_ranking.select('p a')
 print(website_ranking[:6])
 html_website_ranking_address = [website_ranking_element.get_text() for website_ranking_element in website_ranking[1:]]

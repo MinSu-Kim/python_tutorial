@@ -76,7 +76,7 @@ def html_write():
         </html>
         """
     # html_file("D:/workspace_python/python_tutorial/web_scraping/HTML_example_my_site.html", html)
-    html_file("HTML_example_my_site_linux.html", html)
+    html_file_write("HTML_example_my_site_linux.html", html)
 
 
 def html_write2():
@@ -95,13 +95,13 @@ def html_write2():
     </html>
     """
     # html_file("D:/workspace_python/python_tutorial/web_scraping/br_example_constitution.html", html)
-    html_file("br_example_constitution_linux.html", html)
+    html_file_write("br_example_constitution_linux.html", html)
 
 
-def html_file(file_path, message):
-    f = open(file_path, 'w', encoding='utf8')
-    f.write(message)
-    f.close()
+def html_file_write(file_path, message):
+    with open(file_path, 'w') as f:
+        f.write(message)
+        print(file_path, " write ~!")
 
 
 def web3():
@@ -112,13 +112,14 @@ def web3():
         print("file write")
 
     # f = open("D:/workspace_python/python_tutorial/web_scraping/HTML_example_my_site.html", encoding='utf8')
-    f = open("HTML_example_my_site_linux.html", encoding='utf8')
-    html3 = f.read()
-    f.close()
+    with open("HTML_example_my_site_linux.html", encoding='utf8') as f:
+        html3 = f.read()
 
     soup3 = BeautifulSoup(html3, 'lxml')
     print('soup3.select(\'a\') {}'.format(soup3.select('a')))
     print('soup3.select(\'a.portal\') {}'.format(soup3.select('a.portal')))
+    print(soup3.select('html > body > a'))
+    print(soup3.select('html > body > a.portal'))
 
 
 def web4():
@@ -129,9 +130,8 @@ def web4():
         print("file write")
 
     # f = open("D:/workspace_python/python_tutorial/web_scraping/br_example_constitution.html", encoding='utf8')
-    f = open("br_example_constitution_linux.html", encoding='utf8')
-    html3 = f.read()
-    f.close()
+    with open("br_example_constitution_linux.html", encoding='utf8') as f:
+        html3 = f.read()
 
     soup3 = BeautifulSoup(html3, 'lxml')
 
