@@ -72,10 +72,11 @@ df_2013_2015['지역명'] = df_2013_2015.구분 + df_2013_2015.시군구
 print(df_2013_2015)
 
 print(df_2013_2015.drop(['구분', '시군구'], axis=1))
-
+df_2013_2015 = df_2013_2015.drop(['구분', '시군구'], axis=1)
 
 
 # 여기까지
+print("df_2013_2015", '\n', df_2013_2015, '\n')
 melt_columns = df_2013_2015.columns.copy()
 print(melt_columns, type(melt_columns))
 
@@ -87,7 +88,10 @@ print(melt_columns, type(melt_columns))
 #                                    '2015 7', '2015 8', '2015 9'])
 
 # index를 list로 변경
-melt_columns = melt_columns[2:len(melt_columns)-1].tolist()
+melt_columns = melt_columns[:len(melt_columns)-1].tolist()
+print("melt_columns", '\n', melt_columns)
+
+
 df_2013_2015 = pd.melt(df_2013_2015, id_vars=['지역명'],
                        value_vars=melt_columns)
 
@@ -128,7 +132,7 @@ plt.show()
 
 
 # 컬럼명 맞추기
-print(df_2013_2015.columns, '\n\n', df_2015_2019.columns)
+print(df_2013_2015.columns, '\n\n', df_2015_2019.columns, '\n\n')
 
 df_2013_2015_prepare = df_2013_2015[['지역명', '연도', '월', '분양가']]
 total_columns = ['지역명', '연도', '월', '평당분양가격']
@@ -165,5 +169,4 @@ ax2.set_title('연도별 평균 평당분양가격 - seaborn')
 ax3.set_title('연도별 평균 평당분양가격 - boxplot')
 ax4.set_title('대구 연도별 평균 평당분양가격 - boxplot')
 fig.suptitle('연도별 평균 평당분양가격')
-
 plt.show()
