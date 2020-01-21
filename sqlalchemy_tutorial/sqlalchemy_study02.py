@@ -127,3 +127,13 @@ try:
     print(product_user)
 except NoResultFound as e:
     print(e)
+
+
+"""
+문자로 된 SQL 사용하기
+1. 문자열을 Query와 함께 유연하게 쓸 수 있다. 대부분 메소드는 문자열을 수용한다. 예를 들면 filter()와 order_by()에서 쓸 수 있다.
+"""
+
+print("문자로 된 SQL 사용하기")
+[print(product) for product in session.query(Product).filter("code = A001").order_by("code").all()]
+
