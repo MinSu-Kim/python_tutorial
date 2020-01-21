@@ -1,39 +1,62 @@
 import sqlalchemy
-from sqlalchemy import create_engine
-from sqlalchemy.orm import scoped_session, sessionmaker
-
 from sqlalchemy.ext.declarative import declarative_base
-# from ConnectingValue import password, id, host, db
+from sqlalchemy import Column, Integer, String, text, ForeignKey
 
 print(sqlalchemy.__version__)
+engine = sqlalchemy.create_engine('mysql+mysqlconnector://user_coffee:rootroot@localhost/coffee?use_pure=True', echo=True)
 
-re_str = 'mysql+mysqlconnector://user_coffee:rootroot@localhost/coffee?use_pure=True'
-engine = sqlalchemy.create_engine(re_str, echo=True)
-
+# Define and create the table
+# 테이블을 정의
 """
-convert_unicode를 True로 설정하면 String 기반의 모든 column 값을 python unicode object를 수용할 수 있는 값으로 변환
-poolsize의 경우 연결할 수 있는 connection의 크기를 지정하고, pool_recycle의 경우 주어진 초 이후에 connection을 재사용하겠다는 뜻
--> 500초 이후에 해당 connection을 재사용하겠다는 뜻
-
-mysql의 경우 일정 시간동안 connection이 없을 경우 connection을 끊어버리게 되는데 pool_recycle을 설정함으로써 강제로 끊어지는 현상을 막을 수가 있다
-참고로 pool_recycle 시간이 mysql의 wait_timeout 시간보다 작게 설정되어야 한다. (더 크게 설정이 된다면 mysql에서 이미 connection을 끊었기 때문에 의미가 없다.) -1로 설정할 경우에는 따로 timeout을 두지 않겠다는 뜻이다.
-max_overflow는 허용된 connection 수 이상이 들어왔을 때, 최대 얼마까지는 허용
+    ORM에서는 처음에 데이터베이스 테이블을 써먹을 수 있게 설정한 다음 직접 정의한 클래스에 맵핑을 해야한다. 
+    sqlalchemy에서는 두가지가 동시에 이뤄지는데 Declarative 란걸 이용해 클래스를 생성하고 실제 디비 테이블에 연결을 한다.
 """
-engine = create_engine(re_str, convert_unicode=False, pool_size=20, pool_recycle=500, max_overflow=20)
+Base = declarative_base()
 
-"""
-sessionmaker는 sqlalchemy에서 제공하는 class로 session을 만들어 주는 factory라고 생각하면 될 것 같다. 
-일반적으로 sessionmaker를 db 엔진과 연결한 후 session을 생성
-session 생성 시 scoped_session을 이용하는데, 이는 session의 범위를 쓰레드 단위로 생성해 준다고 생각하면 된다.
-"""
-session = sessionmaker(autocommit=False, autoflush=False, bind=engine)
-print("scoped_session을 사용하지 않았을 때의 session 값")
-for i in range(5):
-    print(session())
 
-print()
+class Product(Base):
+    __tablename__ = 'product'
+    code = Column(String(length=4), primary_key=True)
+    name = Column(String(length=20))
 
-session = scoped_session(sessionmaker(autocommit=False, autoflush=False, bind=engine))
-print("scoped_session을 사용할 때의 session 값")
-for i in range(5):
-    print(session())
+    def __repr__(self):
+        return "<Product(code='{0}', name='{1}'>".format(self.code, self.name)
+
+
+class Sale(Base):
+    __tablename__ = 'sale'
+    no = Column(Integer, primary_key=True)
+    code = Column(String(length=4), ForeignKey(''))
+    price = Column(Integer)
+    saleCnt = Column(Integer)
+    marginRate = Column(Integer)
+
+    def __repr__(self) -> str:
+        return "<Sale(no={}, code={}, price={}, saleCnt={}, marginRate={}>".format(
+            self.no, self.code, self.price, self.saleCnt, self.marginRate)
+
+
+class SaleDetail(Base):
+    __tablename__ = 'sale_detail'
+    no = Column(Integer, primary_key=True)
+    sale_price = Column(Integer)
+    addTax = Column(Integer)
+    supply_price = Column(Integer)
+    margin_price = Column(Integer)
+
+    def __repr__(self) -> str:
+        return "<SaleDetail(no={}, sale_price={}, addTax={}, supply_price={}, margin_price={}>".format(
+            self.no, self.sale_price, self.addTax, self.supply_price, self.margin_price)
+
+
+print("Product.__table__ =", Product.__table__,"\nProduct.__mapper__ =", Product.__mapper__)
+print("Sale.__table__ =", Sale.__table__,"\nSale.__mapper__ =", Sale.__mapper__)
+print("SaleDetail.__table__ =", SaleDetail.__table__,"\nSaleDetail.__mapper__ =", SaleDetail.__mapper__)
+
+Base.metadata.create_all(engine)
+
+# Create a session
+Session = sqlalchemy.orm.sessionmaker()
+Session.configure(bind=engine)
+session = Session()
+

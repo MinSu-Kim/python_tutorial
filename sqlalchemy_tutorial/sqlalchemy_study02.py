@@ -1,6 +1,6 @@
 import sqlalchemy
 from sqlalchemy.ext.declarative import declarative_base
-from sqlalchemy import Column, Integer, String
+from sqlalchemy import Column, Integer, String, text
 
 print(sqlalchemy.__version__)
 engine = sqlalchemy.create_engine('mysql+mysqlconnector://user_coffee:rootroot@localhost/coffee?use_pure=True', echo=True)
@@ -127,3 +127,34 @@ try:
     print(product_user)
 except NoResultFound as e:
     print(e)
+
+
+"""
+문자로 된 SQL 사용하기
+"""
+[print(p) for p in session.query(Sale).filter(text("price>4000")).order_by('saleCnt').all()]
+
+"""
+연결된 파라미터에서는 콜론을 이용한, 더 세세한 문자열 기반의 SQL를 사용할 수 있다. 값을 사용할 때 param() 메소드를 이용
+"""
+[print(p) for p in session.query(Sale).filter(text("price>:price and code=:code")).params(price=4000, code='B001').order_by('saleCnt').all()]
+
+"""
+문자열 기반의 일반적인 쿼리를 사용하고 싶다면 from_statement()를 쓴다. 대신 컬럼들은 매퍼에서 선언된 것과 동일하게 써야한다.
+"""
+[print(p) for p in session.query(Sale).from_statement(text("select * from sale where price > :price")).params(price=4000).all()]
+[print(p) for p in session.query("code", "price").from_statement(text("select * from sale where price > :price")).params(price=4000).all()]
+
+"""
+숫자 세기
+"""
+print(session.query(Sale).filter(text("price>4000")).count())
+
+
+from sqlalchemy import func
+[print(res) for res in session.query(func.count(Sale.code), Sale.code).group_by(Sale.code).all()]
+
+# SELECT count(*) FROM table만 하고 싶으면
+print(session.query(func.count('*')).select_from(Sale).scalar())
+# primary key를 사용하면 select_from 없이 사용할 수 있다.
+print(session.query(func.count(Product.code)).scalar())
