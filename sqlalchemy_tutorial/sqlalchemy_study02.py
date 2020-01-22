@@ -1,6 +1,6 @@
 import sqlalchemy
 from sqlalchemy.ext.declarative import declarative_base
-from sqlalchemy import Column, Integer, String, text
+from sqlalchemy import Column, Integer, String
 
 print(sqlalchemy.__version__)
 engine = sqlalchemy.create_engine('mysql+mysqlconnector://user_coffee:rootroot@localhost/coffee?use_pure=True', echo=True)
