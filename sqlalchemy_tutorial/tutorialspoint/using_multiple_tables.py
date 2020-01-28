@@ -45,3 +45,21 @@ if __name__ == "__main__":
     print(s)
     result = con.execute(s)
     [print(row) for row in result]
+
+    # Using Multiple Table Updates
+    stmt = students.update().values(name='xyz').where(students.c.id == addresses.c.id)
+    result = con.execute(stmt)
+
+    s = select([students, addresses]).where(students.c.id == addresses.c.st_id)
+    print(s)
+    result = con.execute(s)
+    [print(row) for row in result]
+
+    # 다중 테이블 삭제
+    stmt = addresses.delete().where(students.c.id == addresses.c.st_id).where(addresses.c.email_add.startswith('admin'))
+    con.execute(stmt)
+
+    s = select([students, addresses]).where(students.c.id == addresses.c.st_id)
+    print(s)
+    result = con.execute(s)
+    [print(row) for row in result]
