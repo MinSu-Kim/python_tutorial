@@ -43,8 +43,5 @@ if __name__ == "__main__":
     engine = create_engine('mysql+mysqlconnector://user_coffee:rootroot@localhost/coffee?use_pure=True', echo=True)
     session = scoped_session(sessionmaker(autocommit=False, autoflush=False, bind=engine))
 
-    # Base.metadata.drop_all(bind=engine, tables=[Invoice.__tablename__, Customers.__table__])
-
-    Customer.invoices = relationship("Invoice", order_by=Invoice.id, back_populates="customer")
-    Base.metadata.create_all(engine)
+    drop_create_table()
 
